@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Snooker Scoreboard</string>
+    <string name="title1">Snooker</string>
+    <string name="title2">Scoreboard</string>
+    <string name="playerA">Player A</string>
+    <string name="playerB">Player B</string>
+    <string name="scoreA">0</string>
+    <string name="scoreB">0</string>
+    <string name="frameScoreA">0</string>
+    <string name="frameScoreB">0</string>
+    <string name="pntsDiff">Points Difference: 0</string>
+    <string name="pntsAvl">Points Available: 147</string>
+    <string name="startFrame">Start Frame</string>
+    <string name="endFrame">End Frame</string>
+    <string name="resetAll">Reset All</string>
+</resources>

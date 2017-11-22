@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ballButtonPadding">2dp</dimen>
+    <dimen name="ballButtonMargin">8dp</dimen>
+    <dimen name="controlButtonMargin">8dp</dimen>
+    <dimen name="timerMargin">8dp</dimen>
+    <dimen name="pointsDiffMargin">4dp</dimen>
+</resources>
