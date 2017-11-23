@@ -33,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
     int blackAvailable = 1;
 
     Chronometer frameTimer;
-    Button start;
+    ImageButton start;
+
+    long timeWhenStopped = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +43,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         frameTimer = (Chronometer) findViewById(R.id.timer);
-        start = (Button) findViewById(R.id.startFrame);
+        start = (ImageButton) findViewById(R.id.startFrame);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frameTimer.setBase(SystemClock.elapsedRealtime());
+                frameTimer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
                 frameTimer.start();
             }
         });
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Displays the given score for Player A.
+     * Displays the score for Player A.
      */
     public void displayForPlayerA(int score) {
         TextView scoreView = (TextView) findViewById(R.id.scoreA);
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         displayForPlayerA(scoreACurrent);
         calcPointsDiff();
         numberOfReds = numberOfReds - 1;
-        pointsAvailable = pointsAvailable - 8;
+        calcPointsAvail();
     }
 
     /**
@@ -166,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Displays the given score for Player B.
+     * Displays the score for Player B.
      */
     public void displayForPlayerB(int score) {
         TextView scoreView = (TextView) findViewById(R.id.scoreB);
@@ -295,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
         blueAvailable = 1;
         pinkAvailable = 1;
         blackAvailable = 1;
+        timeWhenStopped = 0;
     }
 
     /**
@@ -305,6 +308,8 @@ public class MainActivity extends AppCompatActivity {
             frameScoreA = frameScoreA + 1;
             displayFrameForPlayerA(frameScoreA);
             resetVariables();
+            frameTimer.setBase(SystemClock.elapsedRealtime());
+            frameTimer.stop();
             displayForPlayerA(scoreACurrent);
             displayForPlayerB(scoreBCurrent);
             displayPointsAvailable(pointsAvailable);
@@ -315,6 +320,8 @@ public class MainActivity extends AppCompatActivity {
             frameScoreB = frameScoreB + 1;
             displayFrameForPlayerB(frameScoreB);
             resetVariables();
+            frameTimer.setBase(SystemClock.elapsedRealtime());
+            frameTimer.stop();
             displayForPlayerA(scoreACurrent);
             displayForPlayerB(scoreBCurrent);
             displayPointsAvailable(pointsAvailable);
@@ -325,7 +332,13 @@ public class MainActivity extends AppCompatActivity {
             Toast msg = Toast.makeText(getBaseContext(), "Scores are level. Re-spot the Black!", Toast.LENGTH_LONG);
             msg.show();
         }
-        frameTimer.setBase(SystemClock.elapsedRealtime());
+    }
+
+    /**
+     * Pauses the timer
+     */
+    public void pauseTimer(View v) {
+        timeWhenStopped = frameTimer.getBase() - SystemClock.elapsedRealtime();
         frameTimer.stop();
     }
 
@@ -334,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void displayPointsDifference(int pointsDiff) {
         TextView scoreView = (TextView) findViewById(R.id.pointsDifference);
-        scoreView.setText(String.valueOf("Points Difference: " + pointsDiff));
+        scoreView.setText(String.valueOf("Pts Diff: " + pointsDiff));
     }
 
     /**
@@ -358,7 +371,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void displayPointsAvailable(int pointsAvail) {
         TextView scoreView = (TextView) findViewById(R.id.pointsAvailable);
-        scoreView.setText(String.valueOf("Points Available: " + pointsAvail));
+        scoreView.setText(String.valueOf("Pts Avl: " + pointsAvail));
     }
 
     /**
@@ -413,7 +426,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     /**
      * Resets all variables.
      */
@@ -429,6 +441,7 @@ public class MainActivity extends AppCompatActivity {
         displayPointsDifference(pointsDifference);
         frameTimer.setBase(SystemClock.elapsedRealtime());
         frameTimer.stop();
+        timeWhenStopped = 0;
     }
 
 }
