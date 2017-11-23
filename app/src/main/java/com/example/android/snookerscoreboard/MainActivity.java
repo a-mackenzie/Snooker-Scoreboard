@@ -54,20 +54,91 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Save the state of the variables and text after the screen orientation changes.
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putLong("frameTimer", frameTimer.getBase());
+        savedInstanceState.putInt("scoreAOld", scoreAOld);
+        savedInstanceState.putInt("scoreACurrent", scoreACurrent);
+        savedInstanceState.putInt("scoreBOld", scoreBOld);
+        savedInstanceState.putInt("scoreBCurrent", scoreBCurrent);
+        savedInstanceState.putInt("frameScoreA", frameScoreA);
+        savedInstanceState.putInt("frameScoreB", frameScoreB);
+        savedInstanceState.putInt("pointsDifference", pointsDifference);
+        savedInstanceState.putInt("pointsAvailable", pointsAvailable);
+        savedInstanceState.putInt("numberOfReds", numberOfReds);
+        savedInstanceState.putInt("yellowAvailable", yellowAvailable);
+        savedInstanceState.putInt("greenAvailable", greenAvailable);
+        savedInstanceState.putInt("brownAvailable", brownAvailable);
+        savedInstanceState.putInt("blueAvailable", blueAvailable);
+        savedInstanceState.putInt("pinkAvailable", pinkAvailable);
+        savedInstanceState.putInt("blackAvailable", blackAvailable);
+        savedInstanceState.putLong("timeWhenStopped", timeWhenStopped);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle saveInstanceState) {
+        frameTimer.stop();
+        if ((saveInstanceState != null)
+                && saveInstanceState.containsKey("frameTimer")) {
+            frameTimer.setBase(saveInstanceState.getLong("frameTimer"));
+        }
+        super.onRestoreInstanceState(saveInstanceState);
+
+        if (saveInstanceState != null) {
+            if (saveInstanceState != null) {
+                scoreAOld = saveInstanceState.getInt("scoreAOld");
+                scoreACurrent = saveInstanceState.getInt("scoreACurrent");
+                scoreBOld = saveInstanceState.getInt("scoreBOld");
+                scoreBCurrent = saveInstanceState.getInt("scoreBCurrent");
+                frameScoreA = saveInstanceState.getInt("frameScoreA");
+                frameScoreB = saveInstanceState.getInt("frameScoreB");
+                pointsDifference = saveInstanceState.getInt("pointsDifference");
+                pointsAvailable = saveInstanceState.getInt("pointsAvailable");
+                numberOfReds = saveInstanceState.getInt("numberOfReds");
+                yellowAvailable = saveInstanceState.getInt("yellowAvailable");
+                greenAvailable = saveInstanceState.getInt("greenAvailable");
+                brownAvailable = saveInstanceState.getInt("brownAvailable");
+                blueAvailable = saveInstanceState.getInt("blueAvailable");
+                pinkAvailable = saveInstanceState.getInt("pinkAvailable");
+                blackAvailable = saveInstanceState.getInt("blackAvailable");
+                timeWhenStopped = saveInstanceState.getLong("timeWhenStopped");
+            }
+
+            TextView scoreViewA = (TextView) findViewById(R.id.scoreA);
+            TextView scoreViewB = (TextView) findViewById(R.id.scoreB);
+            TextView frameScoreViewA = (TextView) findViewById(R.id.frameScoreA);
+            TextView frameScoreViewB = (TextView) findViewById(R.id.frameScoreB);
+            TextView ptsDiff = (TextView) findViewById(R.id.pointsDifference);
+            TextView ptsAvl = (TextView) findViewById(R.id.pointsAvailable);
+
+            scoreViewA.setText(String.valueOf(scoreACurrent));
+            scoreViewB.setText(String.valueOf(scoreBCurrent));
+            frameScoreViewA.setText(String.valueOf(frameScoreA));
+            frameScoreViewB.setText(String.valueOf(frameScoreB));
+            ptsDiff.setText(String.valueOf(pointsDifference));
+            ptsAvl.setText(String.valueOf(pointsAvailable));
+        }
+        frameTimer.start();
+    }
+
     /**
      * Displays the score for Player A.
      */
     public void displayForPlayerA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.scoreA);
-        scoreView.setText(String.valueOf(score));
+        TextView scoreViewA = (TextView) findViewById(R.id.scoreA);
+        scoreViewA.setText(String.valueOf(score));
     }
 
     /**
      * Displays the frame score for Player A.
      */
     public void displayFrameForPlayerA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.frameScoreA);
-        scoreView.setText(String.valueOf(score));
+        TextView frameScoreViewA = (TextView) findViewById(R.id.frameScoreA);
+        frameScoreViewA.setText(String.valueOf(score));
     }
 
     /**
@@ -171,16 +242,16 @@ public class MainActivity extends AppCompatActivity {
      * Displays the score for Player B.
      */
     public void displayForPlayerB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.scoreB);
-        scoreView.setText(String.valueOf(score));
+        TextView scoreViewB = (TextView) findViewById(R.id.scoreB);
+        scoreViewB.setText(String.valueOf(score));
     }
 
     /**
      * Displays the frame score for Player B.
      */
     public void displayFrameForPlayerB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.frameScoreB);
-        scoreView.setText(String.valueOf(score));
+        TextView frameScoreViewB = (TextView) findViewById(R.id.frameScoreB);
+        frameScoreViewB.setText(String.valueOf(score));
     }
 
     /**
@@ -346,8 +417,8 @@ public class MainActivity extends AppCompatActivity {
      * Displays the points difference.
      */
     public void displayPointsDifference(int pointsDiff) {
-        TextView scoreView = (TextView) findViewById(R.id.pointsDifference);
-        scoreView.setText(String.valueOf("Pts Diff: " + pointsDiff));
+        TextView ptsDiff = (TextView) findViewById(R.id.pointsDifference);
+        ptsDiff.setText(String.valueOf("Pts Diff: " + pointsDiff));
     }
 
     /**
@@ -370,8 +441,8 @@ public class MainActivity extends AppCompatActivity {
      * Displays the points available.
      */
     public void displayPointsAvailable(int pointsAvail) {
-        TextView scoreView = (TextView) findViewById(R.id.pointsAvailable);
-        scoreView.setText(String.valueOf("Pts Avl: " + pointsAvail));
+        TextView ptsAvl = (TextView) findViewById(R.id.pointsAvailable);
+        ptsAvl.setText(String.valueOf("Pts Avl: " + pointsAvail));
     }
 
     /**
