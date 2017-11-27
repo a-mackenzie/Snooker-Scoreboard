@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     Chronometer frameTimer;
     ImageButton start;
+    Boolean currentlyTiming = false;
 
     long timeWhenStopped = 0;
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 frameTimer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
                 frameTimer.start();
+                currentlyTiming = true;
             }
         });
 
@@ -59,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putLong("frameTimer", frameTimer.getBase());
+        savedInstanceState.putLong("frameTimerPaused", SystemClock.elapsedRealtime() + timeWhenStopped);
+        savedInstanceState.putLong("frameTimerTiming", frameTimer.getBase());
+        savedInstanceState.putBoolean("isTiming", currentlyTiming);
         savedInstanceState.putInt("scoreAOld", scoreAOld);
         savedInstanceState.putInt("scoreACurrent", scoreACurrent);
         savedInstanceState.putInt("scoreBOld", scoreBOld);
@@ -82,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRestoreInstanceState(Bundle saveInstanceState) {
         frameTimer.stop();
-        if ((saveInstanceState != null)
-                && saveInstanceState.containsKey("frameTimer")) {
-            frameTimer.setBase(saveInstanceState.getLong("frameTimer"));
+        if (saveInstanceState != null) {
+            frameTimer.setBase(saveInstanceState.getLong("frameTimerPaused"));
+            currentlyTiming = saveInstanceState.getBoolean("isTiming");
         }
         super.onRestoreInstanceState(saveInstanceState);
 
@@ -119,10 +123,17 @@ public class MainActivity extends AppCompatActivity {
             scoreViewB.setText(String.valueOf(scoreBCurrent));
             frameScoreViewA.setText(String.valueOf(frameScoreA));
             frameScoreViewB.setText(String.valueOf(frameScoreB));
-            ptsDiff.setText(String.valueOf(pointsDifference));
-            ptsAvl.setText(String.valueOf(pointsAvailable));
+            ptsDiff.setText(String.valueOf("Pts Diff: " + pointsDifference));
+            ptsAvl.setText(String.valueOf("Pts Avl: " + pointsAvailable));
+
         }
-        frameTimer.start();
+        if (saveInstanceState != null) {
+            if (saveInstanceState.getBoolean("isTiming")) {
+                frameTimer.setBase(saveInstanceState.getLong("frameTimerTiming"));
+                frameTimer.start();
+                currentlyTiming = saveInstanceState.getBoolean("isTiming");
+            }
+        }
     }
 
     /**
@@ -411,6 +422,7 @@ public class MainActivity extends AppCompatActivity {
     public void pauseTimer(View v) {
         timeWhenStopped = frameTimer.getBase() - SystemClock.elapsedRealtime();
         frameTimer.stop();
+        currentlyTiming = false;
     }
 
     /**
