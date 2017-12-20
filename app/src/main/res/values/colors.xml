@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="ballBackground">@color/myGreen</color>
-    <color name="lineColor">@color/myGreen</color>
-    <color name="myRed">#B71C1C</color>
-    <color name="myGreen">#1B5E20</color>
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#1B5E20</color>
+    <color name="colorAccent">#00C853</color>
+
+    <color name="myTransparentLightGreen">#E64CAF50</color>
+
+    <color name="myDarkRed">#B71C1C</color>
+    <color name="myLightRed">#EF9A9A</color>
+    <color name="myTransparentLightRed">#E6F44336</color>
+
+    <color name="myDarkBlue">#0D47A1</color>
+    <color name="myLightBlue">#64B5F6</color>
+    <color name="myTransparentLightBlue">#E664B5F6</color>
+
     <color name="myBlack">#212121</color>
+    <color name="myTransparentGrey">#E69E9E9E</color>
+    
+    <color name="myDarkPink">#880E4F</color>
+    <color name="myDarkYellow">#F57F17</color>
+    <color name="myDarkBrown">#3E2723</color>
 
 </resources>

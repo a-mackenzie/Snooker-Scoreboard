@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid
+        android:color="@color/myDarkRed">
+    </solid>
+    <padding
+        android:top="@dimen/ballButtonPaddingDefault"
+        android:bottom="@dimen/ballButtonPaddingDefault"
+        android:left="@dimen/ballButtonPaddingDefault"
+        android:right="@dimen/ballButtonPaddingDefault">
+    </padding>
+</shape>

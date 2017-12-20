@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="ballButtonPadding">2dp</dimen>
-    <dimen name="ballButtonMargin">8dp</dimen>
+
+    <dimen name="headerPaddingH">54dp</dimen>
+    <dimen name="headerPaddingTop">8dp</dimen>
+
+    <dimen name="playerNameMarginH">16dp</dimen>
+    <dimen name="playerNameMarginV">8dp</dimen>
+    <dimen name="playerNamePadding">8dp</dimen>
+    <dimen name="playerScoreMargin">16dp</dimen>
+
+    <dimen name="frameScoreMargin">4dp</dimen>
+
+    <dimen name="ballButtonPaddingDefault">2dp</dimen>
+    <dimen name="ballButtonPaddingPressed">1dp</dimen>
+    <dimen name="ballButtonMargin">4dp</dimen>
+    <dimen name="ballButtonSize">50dp</dimen>
+    <dimen name="ballLayoutMargin">36dp</dimen>
+
+    <dimen name="foulButtonWidth">50dp</dimen>
+    <dimen name="foulButtonHeight">40dp</dimen>
+
     <dimen name="controlButtonMargin">8dp</dimen>
+    <dimen name="controlButtonHeight">40dp</dimen>
     <dimen name="timerMargin">8dp</dimen>
+    <dimen name="timerButtonSize">40dp</dimen>
+
     <dimen name="pointsDiffMargin">4dp</dimen>
+
 </resources>
