@@ -202,9 +202,9 @@
                         android:layout_width="@dimen/ballButtonSize"
                         android:layout_height="@dimen/ballButtonSize"
                         android:layout_margin="@dimen/ballButtonMargin"
-                        android:background="@drawable/redbuttonstyle"
+                        android:src="@drawable/redbuttonstyle"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/redballbacked"
+                        android:background="@drawable/redbuttonstyle"
                         android:onClick="redA"/>
 
                     <ImageButton

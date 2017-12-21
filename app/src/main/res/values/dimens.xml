@@ -11,8 +11,8 @@
 
     <dimen name="frameScoreMargin">4dp</dimen>
 
-    <dimen name="ballButtonPaddingDefault">2dp</dimen>
-    <dimen name="ballButtonPaddingPressed">1dp</dimen>
+    <dimen name="ballButtonPaddingDefault">4dp</dimen>
+    <dimen name="ballButtonPaddingPressed">2dp</dimen>
     <dimen name="ballButtonMargin">4dp</dimen>
     <dimen name="ballButtonSize">50dp</dimen>
     <dimen name="ballLayoutMargin">36dp</dimen>

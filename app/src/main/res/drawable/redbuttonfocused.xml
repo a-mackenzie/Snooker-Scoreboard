@@ -6,12 +6,14 @@
             <solid
                 android:color="@color/myDarkRed">
             </solid>
-            <padding
-                android:top="@dimen/ballButtonPaddingPressed"
-                android:bottom="@dimen/ballButtonPaddingPressed"
-                android:left="@dimen/ballButtonPaddingPressed"
-                android:right="@dimen/ballButtonPaddingPressed">
-            </padding>
         </shape>
+    </item>
+    <item
+        android:drawable="@drawable/redballbacked"
+        android:top="@dimen/ballButtonPaddingDefault"
+        android:bottom="@dimen/ballButtonPaddingDefault"
+        android:left="@dimen/ballButtonPaddingDefault"
+        android:right="@dimen/ballButtonPaddingDefault"
+        android:gravity="center">
     </item>
 </layer-list>
