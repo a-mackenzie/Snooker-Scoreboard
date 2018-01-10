@@ -36,7 +36,7 @@
         <item name="android:textColor">@color/myDarkBlue</item>
     </style>
 
-    <!-- Font for Points Diff. and Points Avl. text -->
+    <!-- Font for general text -->
     <style name="floatingFont">
         <item name="android:fontFamily">@font/viga</item>
         <item name="android:textSize">16sp</item>
@@ -53,6 +53,20 @@
 
     <!-- Font for control buttons -->
     <style name="controlButtonFont">
+        <item name="android:fontFamily">@font/viga</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- Font for dialog headers -->
+    <style name="dialogHeaderFont">
+        <item name="android:fontFamily">@font/viga</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- Font for dialog body -->
+    <style name="dialogBodyFont">
         <item name="android:fontFamily">@font/viga</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>

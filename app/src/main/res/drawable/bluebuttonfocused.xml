@@ -4,12 +4,12 @@
         <shape
             android:shape="rectangle">
             <solid
-                android:color="@color/myDarkRed">
+                android:color="@color/myDarkBlue">
             </solid>
         </shape>
     </item>
     <item
-        android:drawable="@drawable/redballbacked"
+        android:drawable="@drawable/blueballbacked"
         android:top="@dimen/ballButtonPaddingDefault"
         android:bottom="@dimen/ballButtonPaddingDefault"
         android:left="@dimen/ballButtonPaddingDefault"

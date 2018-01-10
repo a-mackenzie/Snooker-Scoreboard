@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Snooker Scoreboard</string>
 
+    <!-- Strings for the activity_main.xml-->
     <string name="title1">Snooker</string>
     <string name="title2">Scoreboard</string>
 
@@ -11,7 +12,7 @@
     <string name="scoreB">0</string>
     <string name="frameScoreA">0</string>
     <string name="frameScoreB">0</string>
-    <string name="bestofX">(5)</string>
+    <string name="bestofX">(%s)</string>
 
     <string name="switchPlayer">Switch Player</string>
 
@@ -25,11 +26,62 @@
     <string name="freeball">Free Ball</string>
 
     <string name="pntsDiff">Pts Diff: 0</string>
+    <string name="pntsDiffBlank">"Pts Diff: "</string>
     <string name="pntsAvl">Pts Avl: 147</string>
+    <string name="pntsAvlBlank">"Pts Avl: "</string>
 
     <string name="frameTime">Frame Time:</string>
 
+    <string name="undo">Undo</string>
     <string name="endFrame">End Frame</string>
     <string name="resetAll">Reset All</string>
+
+    <!-- Strings for the dialogs-->
+    <string name="confirm">Confirm</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+
+    <!-- Strings for the Welcome dialog-->
+    <string name="welcome">Welcome!</string>
+    <string name="enterNames">Please enter the names of each player below:</string>
+    <string name="playerAHint">Player A</string>
+    <string name="playerBHint">Player B</string>
+    <string name="matchFormat">Please select the match format:</string>
+    <string name="bestof">Best of</string>
+    <string name="frames">frames</string>
+    <string-array name="matchFormatArray">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>7</item>
+        <item>9</item>
+        <item>11</item>
+        <item>19</item>
+        <item>25</item>
+        <item>33</item>
+        <item>35</item>
+    </string-array>
+
+    <!-- Strings for the choose player to break dialog-->
+    <string name="chooseBreaker">Please select which player will break off in Frame 1:</string>
+
+    <!-- Strings for the Reset dialog-->
+    <string name="resetConfirm">Are you sure you want to reset the app?</string>
+
+    <!-- Strings for the End Frame 1 dialog-->
+    <string name="endFrameConfirm">Are you sure you want to end the frame?</string>
+
+    <!-- Strings for the Frame Summary dialog-->
+    <string name="frameSummary">Frame %d Summary</string>
+    <string name="frameWinner">Winner: %s</string>
+    <string name="frameScoreSummary">Score: %d - %d</string>
+    <string name="highestBreakA">%s\'s Highest Break: %s</string>
+    <string name="highestBreakB">%s\'s Highest Break: %s</string>
+    <string name="nextBreaker">Frame %d: %s to break</string>
+    <string name="matchSummary">Match Summary</string>
+    <string name="matchWinner">Winner: %s</string>
+    <string name="matchScoreSummary">Score: %d - %d</string>
+    <string name="newMatch">New Match</string>
 
 </resources>

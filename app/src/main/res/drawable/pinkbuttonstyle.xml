@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/redbuttonpressed"
+    <item android:drawable="@drawable/pinkbuttonpressed"
         android:state_pressed="true" />
-    <item android:drawable="@drawable/redbuttonfocused"
+    <item android:drawable="@drawable/pinkbuttonfocused"
         android:state_focused="true" />
     <item android:drawable="@drawable/ballbuttondisabled"
         android:state_enabled="false"/>
-    <item android:drawable="@drawable/redbuttondefault" />
+    <item android:drawable="@drawable/pinkbuttondefault" />
 </selector>

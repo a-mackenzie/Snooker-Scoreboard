@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dialogMargin"
+        android:gravity="center_horizontal"
+        android:text="@string/welcome"
+        android:textAppearance="@style/dialogHeaderFont" />
+
+    <TextView
+        android:id="@+id/resultScore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dialogMargin"
+        android:layout_marginTop="@dimen/dialogMargin"
+        android:gravity="center_horizontal"
+        android:text="@string/enterNames"
+        android:textAppearance="@style/dialogBodyFont"/>
+
+    <EditText
+        android:id="@+id/enterPlayerA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dialogEditTextMargin"
+        android:hint="@string/playerAHint"
+        android:textAppearance="@style/dialogBodyFont"/>
+
+    <EditText
+        android:id="@+id/enterPlayerB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dialogEditTextMargin"
+        android:hint="@string/playerBHint"
+        android:textAppearance="@style/dialogBodyFont"/>
+
+    <TextView
+        android:id="@+id/resultsMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dialogMargin"
+        android:layout_marginTop="@dimen/dialogMargin"
+        android:gravity="center_horizontal"
+        android:text="@string/matchFormat"
+        android:textAppearance="@style/dialogBodyFont"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/bestof"
+            android:textAppearance="@style/dialogBodyFont"/>
+
+        <Spinner
+            android:id="@+id/matchFormat"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="@dimen/spinnerTextPadding"
+            android:spinnerMode="dropdown"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/frames"
+            android:textAppearance="@style/dialogBodyFont"/>
+
+    </LinearLayout>
+
+</LinearLayout>

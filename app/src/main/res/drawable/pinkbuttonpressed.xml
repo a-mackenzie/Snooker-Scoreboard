@@ -4,16 +4,15 @@
         <shape
             android:shape="rectangle">
             <solid
-                android:color="@color/myDarkRed">
+                android:color="@color/myDarkPink">
             </solid>
         </shape>
     </item>
     <item
-        android:drawable="@drawable/redballbacked"
+        android:drawable="@drawable/pinkballbacked"
         android:top="@dimen/ballButtonPaddingPressed"
         android:bottom="@dimen/ballButtonPaddingPressed"
         android:left="@dimen/ballButtonPaddingPressed"
-        android:right="@dimen/ballButtonPaddingPressed"
-        android:gravity="center">
+        android:right="@dimen/ballButtonPaddingPressed">
     </item>
 </layer-list>
