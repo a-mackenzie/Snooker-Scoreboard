@@ -10,11 +10,11 @@
 
     <string name="scoreA">0</string>
     <string name="scoreB">0</string>
-    <string name="frameScoreA">0</string>
-    <string name="frameScoreB">0</string>
-    <string name="bestofX">(%s)</string>
+    <string name="frameScore">%d (%s) %d</string>
 
     <string name="switchPlayer">Switch Player</string>
+    <string name="A">A</string>
+    <string name="B">B</string>
 
     <string name="fouls">Fouls</string>
 

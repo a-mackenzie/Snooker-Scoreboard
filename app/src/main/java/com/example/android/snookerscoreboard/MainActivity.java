@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     int targetBallOld, targetBallCurrent;
     int frameNumber = 1;
 
-    TextView playerAName, playerBName, scoreViewA, scoreViewB, frameScoreViewA, frameScoreViewB, bestOfX, ptsDiff, ptsAvl;
+    TextView playerAName, playerBName, scoreViewA, scoreViewB, frameScoreView, ptsDiff, ptsAvl;
     RadioButton switchA, switchB;
     Switch freeBallSwitch;
     Boolean lastPointsFouled, finalRed;
@@ -63,9 +63,7 @@ public class MainActivity extends AppCompatActivity {
         playerBName = findViewById(R.id.playerBName);
         scoreViewA = findViewById(R.id.scoreA);
         scoreViewB = findViewById(R.id.scoreB);
-        frameScoreViewA = findViewById(R.id.frameScoreA);
-        frameScoreViewB = findViewById(R.id.frameScoreB);
-        bestOfX = findViewById(R.id.bestOfX);
+        frameScoreView = findViewById(R.id.frameScore);
         ptsDiff = findViewById(R.id.pointsDifference);
         ptsAvl = findViewById(R.id.pointsAvailable);
         switchA = findViewById(R.id.switchA);
@@ -113,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
                         playerBName.setText(nameBEntered);
                         matchFormatChosen = matchFormat.getSelectedItem().toString();
                         matchFormatInt = Integer.parseInt(matchFormatChosen);
-                        bestOfX.setText(getResources().getString(R.string.bestofX, matchFormatChosen));
                         breakA.setText(nameAEntered);
                         breakB.setText(nameBEntered);
+                        displayFrameScore();
                         welcomeDialog.dismiss();
                         breakDialog.show();
                     }
@@ -364,13 +362,11 @@ public class MainActivity extends AppCompatActivity {
 
             scoreViewA.setText(String.valueOf(scoreACurrent));
             scoreViewB.setText(String.valueOf(scoreBCurrent));
-            frameScoreViewA.setText(String.valueOf(frameScoreA));
-            frameScoreViewB.setText(String.valueOf(frameScoreB));
             ptsDiff.setText(String.valueOf("Pts Diff: " + pointsDifference));
             ptsAvl.setText(String.valueOf("Pts Avl: " + pointsAvailable));
             playerAName.setText(String.valueOf(nameAEntered));
             playerBName.setText(String.valueOf(nameBEntered));
-            bestOfX.setText("(" + String.valueOf(matchFormatChosen + ")"));
+            frameScoreView.setText(getResources().getString(R.string.frameScore, frameScoreA, matchFormatChosen, frameScoreB));
 
             if (switchA.isChecked()) {
                 playerAName.setBackground(getResources().getDrawable(R.drawable.activeplayerbackground));
@@ -383,6 +379,10 @@ public class MainActivity extends AppCompatActivity {
                 playerBName.setBackground(getResources().getDrawable(R.drawable.activeplayerbackground));
                 scoreViewB.setBackground(getResources().getDrawable(R.drawable.activeplayerbackground));
             }
+        }
+
+        if (nameAEntered == null) {
+            welcomeDialog.show();
         }
     }
 
@@ -416,12 +416,6 @@ public class MainActivity extends AppCompatActivity {
         scoreViewA.setText(String.valueOf(score));
     }
 
-    /**
-     * Displays the frame score for Player A.
-     */
-    public void displayFrameForPlayerA(int score) {
-        frameScoreViewA.setText(String.valueOf(score));
-    }
 
     /**
      * Displays the score for Player B.
@@ -430,11 +424,12 @@ public class MainActivity extends AppCompatActivity {
         scoreViewB.setText(String.valueOf(score));
     }
 
+
     /**
-     * Displays the frame score for Player B.
+     * Displays the frame score
      */
-    public void displayFrameForPlayerB(int score) {
-        frameScoreViewB.setText(String.valueOf(score));
+    public void displayFrameScore() {
+        frameScoreView.setText(getResources().getString(R.string.frameScore, frameScoreA, matchFormatChosen, frameScoreB));
     }
 
     /**
@@ -900,8 +895,7 @@ public class MainActivity extends AppCompatActivity {
         frameNumber = 1;
         displayForPlayerA(scoreACurrent);
         displayForPlayerB(scoreBCurrent);
-        displayFrameForPlayerA(frameScoreA);
-        displayFrameForPlayerB(frameScoreB);
+        displayFrameScore();
         displayPointsAvailable(pointsAvailable);
         displayPointsDifference(pointsDifference);
     }
@@ -924,10 +918,10 @@ public class MainActivity extends AppCompatActivity {
     public void updateFrameScore() {
         if (scoreACurrent > scoreBCurrent) {
             frameScoreA += 1;
-            displayFrameForPlayerA(frameScoreA);
+            displayFrameScore();
         } else if (scoreBCurrent > scoreACurrent) {
             frameScoreB += 1;
-            displayFrameForPlayerB(frameScoreB);
+            displayFrameScore();
         }
     }
 

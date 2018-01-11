@@ -4,7 +4,7 @@
     <dimen name="headerPaddingH">54dp</dimen>
     <dimen name="headerPaddingTop">8dp</dimen>
 
-    <dimen name="landHeaderPaddingH">228dp</dimen>
+    <dimen name="landHeaderPaddingH">240dp</dimen>
 
     <dimen name="playerNameMarginOut">16dp</dimen>
     <dimen name="playerNameMarginIn">-2dp</dimen>
@@ -14,7 +14,10 @@
 
     <dimen name="landPlayerNameMarginIn">128dp</dimen>
 
-    <dimen name="frameScoreMargin">4dp</dimen>
+    <dimen name="frameScoreMargin">8dp</dimen>
+
+    <dimen name="switchTextPadding">8dp</dimen>
+    <dimen name="switchRadioButtonMargin">32dp</dimen>
 
     <dimen name="ballButtonPaddingDefault">2dp</dimen>
     <dimen name="ballButtonPaddingPressed">1dp</dimen>

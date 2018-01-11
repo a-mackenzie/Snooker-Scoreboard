@@ -15,6 +15,7 @@
         android:src="@drawable/background_slate"/>
 
     <ImageView
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/landHeaderPaddingH"
@@ -23,203 +24,168 @@
         android:adjustViewBounds="true"/>
 
     <LinearLayout
+        android:id="@+id/playerNamesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/playerAName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/playerNameMarginOut"
+            android:layout_marginRight="@dimen/landPlayerNameMarginIn"
+            android:layout_marginStart="@dimen/playerNameMarginOut"
+            android:layout_marginEnd="@dimen/landPlayerNameMarginIn"
+            android:layout_marginVertical="@dimen/playerNameMarginV"
+            android:layout_weight="1"
+            android:background="@drawable/activeplayerbackground"
+            android:gravity="start"
+            android:padding="@dimen/playerNamePadding"
+            android:text="@string/playerA"
+            android:textAppearance="@style/playerFont" />
+
+        <TextView
+            android:id="@+id/playerBName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/playerNameMarginOut"
+            android:layout_marginLeft="@dimen/landPlayerNameMarginIn"
+            android:layout_marginEnd="@dimen/playerNameMarginOut"
+            android:layout_marginStart="@dimen/landPlayerNameMarginIn"
+            android:layout_marginVertical="@dimen/playerNameMarginV"
+            android:padding="@dimen/playerNamePadding"
+            android:gravity="end"
+            android:text="@string/playerB"
+            android:textAppearance="@style/playerFont"
+            android:background="@drawable/inactiveplayerbackground"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/scoresLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_below="@id/playerNamesLayout">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/playerAName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/playerNameMarginOut"
-                android:layout_marginRight="@dimen/landPlayerNameMarginIn"
-                android:layout_marginVertical="@dimen/playerNameMarginV"
-                android:layout_weight="1"
-                android:background="@drawable/activeplayerbackground"
-                android:gravity="start"
-                android:padding="@dimen/playerNamePadding"
-                android:text="@string/playerA"
-                android:textAppearance="@style/playerFont" />
-
-            <TextView
-                android:id="@+id/playerBName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="@dimen/playerNameMarginOut"
-                android:layout_marginLeft="@dimen/landPlayerNameMarginIn"
-                android:layout_marginVertical="@dimen/playerNameMarginV"
-                android:padding="@dimen/playerNamePadding"
-                android:gravity="end"
-                android:text="@string/playerB"
-                android:textAppearance="@style/playerFont"
-                android:background="@drawable/inactiveplayerbackground"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/scoreA"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="@dimen/playerScoreMargin"
-                android:gravity="center_horizontal"
-                android:text="@string/scoreA"
-                android:textAppearance="@style/scoreFont"
-                android:background="@drawable/activeplayerbackground"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="bottom"
-                android:gravity="center"
-                android:paddingHorizontal="@dimen/frameScoreMargin"
-                android:background="@drawable/framescorebackground">
-
-                <TextView
-                    android:id="@+id/frameScoreA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/frameScoreMargin"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/frameScoreA"
-                    android:textAppearance="@style/scoreFrameFont"/>
-
-                <TextView
-                    android:id="@+id/bestOfX"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/frameScoreMargin"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/bestofX"
-                    android:textAppearance="@style/scoreFrameFont"/>
-
-                <TextView
-                    android:id="@+id/frameScoreB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/frameScoreMargin"
-                    android:layout_gravity="center_vertical"
-                    android:text="@string/frameScoreB"
-                    android:textAppearance="@style/scoreFrameFont"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/scoreB"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="@dimen/playerScoreMargin"
-                android:gravity="center_horizontal"
-                android:text="@string/scoreB"
-                android:textAppearance="@style/scoreFont"
-                android:background="@drawable/inactiveplayerbackground"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/scoreA"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/playerScoreMargin"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:background="@drawable/framescorebackground">
+            android:gravity="center_horizontal"
+            android:text="@string/scoreA"
+            android:textAppearance="@style/scoreFont"
+            android:background="@drawable/activeplayerbackground"/>
 
-            <TextView
-                android:id="@+id/pointsDifference"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/pntsDiff"
-                android:textAppearance="@style/pointsDiffFont"/>
-
-            <TextView
-                android:id="@+id/pointsAvailable"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/pntsAvl"
-                android:textAppearance="@style/pointsDiffFont" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/frameScore"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:padding="@dimen/frameScoreMargin"
+            android:background="@drawable/framescorebackground"
+            android:text="@string/frameScore"
+            android:textAppearance="@style/scoreFrameFont"/>
 
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
+        <TextView
+            android:id="@+id/scoreB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/playerScoreMargin"
+            android:gravity="center_horizontal"
+            android:text="@string/scoreB"
+            android:textAppearance="@style/scoreFont"
+            android:background="@drawable/inactiveplayerbackground"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/switchPlayer"
-                    android:textAppearance="@style/floatingFont"/>
+    </LinearLayout>
 
-                <RadioButton
-                    android:id="@+id/switchA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textColor="@color/myDarkBlue"
-                    android:textAppearance="@style/floatingFont"
-                    android:onClick="switchPlayer"/>
+    <LinearLayout
+        android:id="@+id/pointsDiffAvlLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/playerScoreMargin"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/scoresLayout"
+        android:orientation="horizontal"
+        android:background="@drawable/framescorebackground">
 
-                <RadioButton
-                    android:id="@+id/switchB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="B"
-                    android:textColor="@color/myDarkBlue"
-                    android:textAppearance="@style/floatingFont"
-                    android:onClick="switchPlayer"/>
+        <TextView
+            android:id="@+id/pointsDifference"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/pntsDiff"
+            android:textAppearance="@style/pointsDiffFont"/>
 
-            </RadioGroup>
+        <TextView
+            android:id="@+id/pointsAvailable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/pntsAvl"
+            android:textAppearance="@style/pointsDiffFont" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal">
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="@dimen/ballButtonMargin"
-                    android:text="@string/freeball"
-                    android:textAppearance="@style/floatingFont"/>
+    <RadioGroup
+        android:id="@+id/controlsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pointsDiffAvlLayout"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
 
-                <Switch
-                    android:id="@+id/freeBallSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/ballButtonMargin"
-                    android:onClick="enableAllButtons"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/switchPlayer"
+            android:textAppearance="@style/floatingFont"/>
 
-            </LinearLayout>
+        <RadioButton
+            android:id="@+id/switchA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/A"
+            android:textColor="@color/myDarkBlue"
+            android:textAppearance="@style/floatingFont"
+            android:onClick="switchPlayer"/>
 
-        </LinearLayout>
+        <RadioButton
+            android:id="@+id/switchB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/switchRadioButtonMargin"
+            android:text="@string/B"
+            android:textColor="@color/myDarkBlue"
+            android:textAppearance="@style/floatingFont"
+            android:onClick="switchPlayer"/>
+
+        <Switch
+            android:id="@+id/freeBallSwitch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:switchPadding="@dimen/switchTextPadding"
+            android:layout_marginLeft="@dimen/switchRadioButtonMargin"
+            android:text="@string/freeball"
+            android:textColor="@color/myDarkBlue"
+            android:textAppearance="@style/floatingFont"
+            android:textStyle="bold"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/controlsLayout"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
