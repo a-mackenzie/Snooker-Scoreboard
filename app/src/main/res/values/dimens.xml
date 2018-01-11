@@ -27,6 +27,7 @@
 
     <dimen name="controlButtonMargin">8dp</dimen>
     <dimen name="controlButtonHeight">30dp</dimen>
+    <dimen name="controlButtonMarginBottom">24dp</dimen>
 
     <dimen name="pointsDiffMargin">4dp</dimen>
 

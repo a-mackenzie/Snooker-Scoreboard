@@ -24,219 +24,308 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/playerAName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/playerNameMarginOut"
-                    android:layout_marginRight="@dimen/landPlayerNameMarginIn"
-                    android:layout_marginVertical="@dimen/playerNameMarginV"
-                    android:layout_weight="1"
-                    android:background="@drawable/activeplayerbackground"
-                    android:gravity="start"
-                    android:padding="@dimen/playerNamePadding"
-                    android:text="@string/playerA"
-                    android:textAppearance="@style/playerFont" />
-
-                <TextView
-                    android:id="@+id/playerBName"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginRight="@dimen/playerNameMarginOut"
-                    android:layout_marginLeft="@dimen/landPlayerNameMarginIn"
-                    android:layout_marginVertical="@dimen/playerNameMarginV"
-                    android:padding="@dimen/playerNamePadding"
-                    android:gravity="end"
-                    android:text="@string/playerB"
-                    android:textAppearance="@style/playerFont"
-                    android:background="@drawable/inactiveplayerbackground"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/scoreA"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="@dimen/playerScoreMargin"
-                    android:gravity="center_horizontal"
-                    android:text="@string/scoreA"
-                    android:textAppearance="@style/scoreFont"
-                    android:background="@drawable/activeplayerbackground"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="bottom"
-                    android:gravity="center"
-                    android:paddingHorizontal="@dimen/frameScoreMargin"
-                    android:background="@drawable/framescorebackground">
-
-                    <TextView
-                        android:id="@+id/frameScoreA"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/frameScoreMargin"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/frameScoreA"
-                        android:textAppearance="@style/scoreFrameFont"/>
-
-                    <TextView
-                        android:id="@+id/bestOfX"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/frameScoreMargin"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/bestofX"
-                        android:textAppearance="@style/scoreFrameFont"/>
-
-                    <TextView
-                        android:id="@+id/frameScoreB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/frameScoreMargin"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/frameScoreB"
-                        android:textAppearance="@style/scoreFrameFont"/>
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/scoreB"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="@dimen/playerScoreMargin"
-                    android:gravity="center_horizontal"
-                    android:text="@string/scoreB"
-                    android:textAppearance="@style/scoreFont"
-                    android:background="@drawable/inactiveplayerbackground"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/playerAName"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/playerNameMarginOut"
+                android:layout_marginRight="@dimen/landPlayerNameMarginIn"
+                android:layout_marginVertical="@dimen/playerNameMarginV"
+                android:layout_weight="1"
+                android:background="@drawable/activeplayerbackground"
+                android:gravity="start"
+                android:padding="@dimen/playerNamePadding"
+                android:text="@string/playerA"
+                android:textAppearance="@style/playerFont" />
+
+            <TextView
+                android:id="@+id/playerBName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/playerNameMarginOut"
+                android:layout_marginLeft="@dimen/landPlayerNameMarginIn"
+                android:layout_marginVertical="@dimen/playerNameMarginV"
+                android:padding="@dimen/playerNamePadding"
+                android:gravity="end"
+                android:text="@string/playerB"
+                android:textAppearance="@style/playerFont"
+                android:background="@drawable/inactiveplayerbackground"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/scoreA"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_marginHorizontal="@dimen/playerScoreMargin"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/scoreA"
+                android:textAppearance="@style/scoreFont"
+                android:background="@drawable/activeplayerbackground"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/frameScoreMargin"
                 android:background="@drawable/framescorebackground">
 
                 <TextView
-                    android:id="@+id/pointsDifference"
-                    android:layout_width="0dp"
+                    android:id="@+id/frameScoreA"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/pntsDiff"
-                    android:textAppearance="@style/pointsDiffFont"/>
+                    android:layout_margin="@dimen/frameScoreMargin"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/frameScoreA"
+                    android:textAppearance="@style/scoreFrameFont"/>
 
                 <TextView
-                    android:id="@+id/pointsAvailable"
-                    android:layout_width="0dp"
+                    android:id="@+id/bestOfX"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/pntsAvl"
-                    android:textAppearance="@style/pointsDiffFont" />
+                    android:layout_margin="@dimen/frameScoreMargin"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/bestofX"
+                    android:textAppearance="@style/scoreFrameFont"/>
+
+                <TextView
+                    android:id="@+id/frameScoreB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/frameScoreMargin"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/frameScoreB"
+                    android:textAppearance="@style/scoreFrameFont"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/scoreB"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/playerScoreMargin"
+                android:gravity="center_horizontal"
+                android:text="@string/scoreB"
+                android:textAppearance="@style/scoreFont"
+                android:background="@drawable/inactiveplayerbackground"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/playerScoreMargin"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:background="@drawable/framescorebackground">
+
+            <TextView
+                android:id="@+id/pointsDifference"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/pntsDiff"
+                android:textAppearance="@style/pointsDiffFont"/>
+
+            <TextView
+                android:id="@+id/pointsAvailable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/pntsAvl"
+                android:textAppearance="@style/pointsDiffFont" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <RadioGroup
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_gravity="center"
+                    android:text="@string/switchPlayer"
+                    android:textAppearance="@style/floatingFont"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/switchPlayer"
-                        android:textAppearance="@style/floatingFont"/>
+                <RadioButton
+                    android:id="@+id/switchA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A"
+                    android:textColor="@color/myDarkBlue"
+                    android:textAppearance="@style/floatingFont"
+                    android:onClick="switchPlayer"/>
 
-                    <RadioButton
-                        android:id="@+id/switchA"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="A"
-                        android:textColor="@color/myDarkBlue"
-                        android:textAppearance="@style/floatingFont"
-                        android:onClick="switchPlayer"/>
+                <RadioButton
+                    android:id="@+id/switchB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B"
+                    android:textColor="@color/myDarkBlue"
+                    android:textAppearance="@style/floatingFont"
+                    android:onClick="switchPlayer"/>
 
-                    <RadioButton
-                        android:id="@+id/switchB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="B"
-                        android:textColor="@color/myDarkBlue"
-                        android:textAppearance="@style/floatingFont"
-                        android:onClick="switchPlayer"/>
+            </RadioGroup>
 
-                </RadioGroup>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="@dimen/ballButtonMargin"
+                    android:text="@string/freeball"
+                    android:textAppearance="@style/floatingFont"/>
+
+                <Switch
+                    android:id="@+id/freeBallSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/ballButtonMargin"
+                    android:onClick="enableAllButtons"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginHorizontal="@dimen/ballButtonMargin"
-                        android:text="@string/freeball"
-                        android:textAppearance="@style/floatingFont"/>
+                    <ImageButton
+                        android:id="@+id/redBall"
+                        android:layout_width="@dimen/ballButtonSize"
+                        android:layout_height="@dimen/ballButtonSize"
+                        android:layout_margin="@dimen/ballButtonMargin"
+                        android:background="@drawable/redbuttonstyle"
+                        android:onClick="potRed"/>
 
-                    <Switch
-                        android:id="@+id/freeBallSwitch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/ballButtonMargin"
-                        android:onClick="enableAllButtons"/>
+                    <ImageButton
+                        android:id="@+id/yellowBall"
+                        android:layout_width="@dimen/ballButtonSize"
+                        android:layout_height="@dimen/ballButtonSize"
+                        android:layout_margin="@dimen/ballButtonMargin"
+                        android:background="@drawable/yellowbuttonstyle"
+                        android:onClick="potYellow"/>
+
+                    <ImageButton
+                        android:id="@+id/greenBall"
+                        android:layout_width="@dimen/ballButtonSize"
+                        android:layout_height="@dimen/ballButtonSize"
+                        android:layout_margin="@dimen/ballButtonMargin"
+                        android:background="@drawable/greenbuttonstyle"
+                        android:onClick="potGreen"/>
+
+                    <ImageButton
+                        android:id="@+id/brownBall"
+                        android:layout_width="@dimen/ballButtonSize"
+                        android:layout_height="@dimen/ballButtonSize"
+                        android:layout_margin="@dimen/ballButtonMargin"
+                        android:background="@drawable/brownbuttonstyle"
+                        android:onClick="potBrown"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/blueBall"
+                        android:layout_width="@dimen/ballButtonSize"
+                        android:layout_height="@dimen/ballButtonSize"
+                        android:layout_margin="@dimen/ballButtonMargin"
+                        android:background="@drawable/bluebuttonstyle"
+                        android:onClick="potBlue"/>
+
+                    <ImageButton
+                        android:id="@+id/pinkBall"
+                        android:layout_width="@dimen/ballButtonSize"
+                        android:layout_height="@dimen/ballButtonSize"
+                        android:layout_margin="@dimen/ballButtonMargin"
+                        android:background="@drawable/pinkbuttonstyle"
+                        android:onClick="potPink"/>
+
+                    <ImageButton
+                        android:id="@+id/blackBall"
+                        android:layout_width="@dimen/ballButtonSize"
+                        android:layout_height="@dimen/ballButtonSize"
+                        android:layout_margin="@dimen/ballButtonMargin"
+                        android:background="@drawable/blackbuttonstyle"
+                        android:onClick="potBlack"/>
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/fouls"
+                    android:textAppearance="@style/floatingFont"/>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="center_horizontal"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -245,37 +334,25 @@
                         android:layout_gravity="center_horizontal"
                         android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/redBall"
-                            android:layout_width="@dimen/ballButtonSize"
-                            android:layout_height="@dimen/ballButtonSize"
+                        <Button
+                            android:id="@+id/foul4"
+                            android:layout_width="@dimen/foulButtonWidth"
+                            android:layout_height="@dimen/foulButtonHeight"
                             android:layout_margin="@dimen/ballButtonMargin"
-                            android:background="@drawable/redbuttonstyle"
-                            android:onClick="potRed"/>
+                            android:text="@string/foul4"
+                            android:background="@drawable/foulbuttonstyle"
+                            android:textAppearance="@style/foulButtonFont"
+                            android:onClick="foul4"/>
 
-                        <ImageButton
-                            android:id="@+id/yellowBall"
-                            android:layout_width="@dimen/ballButtonSize"
-                            android:layout_height="@dimen/ballButtonSize"
+                        <Button
+                            android:id="@+id/foul5"
+                            android:layout_width="@dimen/foulButtonWidth"
+                            android:layout_height="@dimen/foulButtonHeight"
                             android:layout_margin="@dimen/ballButtonMargin"
-                            android:background="@drawable/yellowbuttonstyle"
-                            android:onClick="potYellow"/>
-
-                        <ImageButton
-                            android:id="@+id/greenBall"
-                            android:layout_width="@dimen/ballButtonSize"
-                            android:layout_height="@dimen/ballButtonSize"
-                            android:layout_margin="@dimen/ballButtonMargin"
-                            android:background="@drawable/greenbuttonstyle"
-                            android:onClick="potGreen"/>
-
-                        <ImageButton
-                            android:id="@+id/brownBall"
-                            android:layout_width="@dimen/ballButtonSize"
-                            android:layout_height="@dimen/ballButtonSize"
-                            android:layout_margin="@dimen/ballButtonMargin"
-                            android:background="@drawable/brownbuttonstyle"
-                            android:onClick="potBrown"/>
+                            android:text="@string/foul5"
+                            android:background="@drawable/foulbuttonstyle"
+                            android:textAppearance="@style/foulButtonFont"
+                            android:onClick="foul5"/>
 
                     </LinearLayout>
 
@@ -285,158 +362,74 @@
                         android:layout_gravity="center_horizontal"
                         android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/blueBall"
-                            android:layout_width="@dimen/ballButtonSize"
-                            android:layout_height="@dimen/ballButtonSize"
+                        <Button
+                            android:id="@+id/foul6"
+                            android:layout_width="@dimen/foulButtonWidth"
+                            android:layout_height="@dimen/foulButtonHeight"
                             android:layout_margin="@dimen/ballButtonMargin"
-                            android:background="@drawable/bluebuttonstyle"
-                            android:onClick="potBlue"/>
+                            android:text="@string/foul6"
+                            android:background="@drawable/foulbuttonstyle"
+                            android:textAppearance="@style/foulButtonFont"
+                            android:onClick="foul6"/>
 
-                        <ImageButton
-                            android:id="@+id/pinkBall"
-                            android:layout_width="@dimen/ballButtonSize"
-                            android:layout_height="@dimen/ballButtonSize"
+                        <Button
+                            android:id="@+id/foul7"
+                            android:layout_width="@dimen/foulButtonWidth"
+                            android:layout_height="@dimen/foulButtonHeight"
                             android:layout_margin="@dimen/ballButtonMargin"
-                            android:background="@drawable/pinkbuttonstyle"
-                            android:onClick="potPink"/>
-
-                        <ImageButton
-                            android:id="@+id/blackBall"
-                            android:layout_width="@dimen/ballButtonSize"
-                            android:layout_height="@dimen/ballButtonSize"
-                            android:layout_margin="@dimen/ballButtonMargin"
-                            android:background="@drawable/blackbuttonstyle"
-                            android:onClick="potBlack"/>
+                            android:text="@string/foul7"
+                            android:background="@drawable/foulbuttonstyle"
+                            android:textAppearance="@style/foulButtonFont"
+                            android:onClick="foul7"/>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/undo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:layout_margin="@dimen/ballButtonMargin"
+                    android:layout_gravity="center"
+                    android:minHeight="@dimen/controlButtonHeight"
+                    android:text="@string/undo"
+                    android:textAppearance="@style/controlButtonFont"
+                    android:onClick="undo"
+                    android:background="@drawable/controlbuttonstyle"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="@string/fouls"
-                        android:textAppearance="@style/floatingFont"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/foul4"
-                                android:layout_width="@dimen/foulButtonWidth"
-                                android:layout_height="@dimen/foulButtonHeight"
-                                android:layout_margin="@dimen/ballButtonMargin"
-                                android:text="@string/foul4"
-                                android:background="@drawable/foulbuttonstyle"
-                                android:textAppearance="@style/foulButtonFont"
-                                android:onClick="foul4"/>
-
-                            <Button
-                                android:id="@+id/foul5"
-                                android:layout_width="@dimen/foulButtonWidth"
-                                android:layout_height="@dimen/foulButtonHeight"
-                                android:layout_margin="@dimen/ballButtonMargin"
-                                android:text="@string/foul5"
-                                android:background="@drawable/foulbuttonstyle"
-                                android:textAppearance="@style/foulButtonFont"
-                                android:onClick="foul5"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:orientation="horizontal">
-
-                            <Button
-                                android:id="@+id/foul6"
-                                android:layout_width="@dimen/foulButtonWidth"
-                                android:layout_height="@dimen/foulButtonHeight"
-                                android:layout_margin="@dimen/ballButtonMargin"
-                                android:text="@string/foul6"
-                                android:background="@drawable/foulbuttonstyle"
-                                android:textAppearance="@style/foulButtonFont"
-                                android:onClick="foul6"/>
-
-                            <Button
-                                android:id="@+id/foul7"
-                                android:layout_width="@dimen/foulButtonWidth"
-                                android:layout_height="@dimen/foulButtonHeight"
-                                android:layout_margin="@dimen/ballButtonMargin"
-                                android:text="@string/foul7"
-                                android:background="@drawable/foulbuttonstyle"
-                                android:textAppearance="@style/foulButtonFont"
-                                android:onClick="foul7"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <Button
+                    android:id="@+id/endFrame"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:layout_margin="@dimen/ballButtonMargin"
+                    android:layout_gravity="center"
+                    android:minHeight="@dimen/controlButtonHeight"
+                    android:text="@string/endFrame"
+                    android:textAppearance="@style/controlButtonFont"
+                    android:onClick="openEndFrameDialog"
+                    android:background="@drawable/controlbuttonstyle"/>
 
-                    <Button
-                        android:id="@+id/undo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/ballButtonMargin"
-                        android:layout_gravity="center"
-                        android:minHeight="@dimen/controlButtonHeight"
-                        android:text="@string/undo"
-                        android:textAppearance="@style/controlButtonFont"
-                        android:onClick="undo"
-                        android:background="@drawable/controlbuttonstyle"/>
-
-                    <Button
-                        android:id="@+id/endFrame"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/ballButtonMargin"
-                        android:layout_gravity="center"
-                        android:minHeight="@dimen/controlButtonHeight"
-                        android:text="@string/endFrame"
-                        android:textAppearance="@style/controlButtonFont"
-                        android:onClick="openEndFrameDialog"
-                        android:background="@drawable/controlbuttonstyle"/>
-
-                    <Button
-                        android:id="@+id/endMatch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/ballButtonMargin"
-                        android:layout_gravity="center"
-                        android:minHeight="@dimen/controlButtonHeight"
-                        android:text="@string/resetAll"
-                        android:textAppearance="@style/controlButtonFont"
-                        android:onClick="openResetDialog"
-                        android:background="@drawable/controlbuttonstyle"/>
-
-                </LinearLayout>
+                <Button
+                    android:id="@+id/endMatch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/ballButtonMargin"
+                    android:layout_gravity="center"
+                    android:minHeight="@dimen/controlButtonHeight"
+                    android:text="@string/resetAll"
+                    android:textAppearance="@style/controlButtonFont"
+                    android:onClick="openResetDialog"
+                    android:background="@drawable/controlbuttonstyle"/>
 
             </LinearLayout>
 
