@@ -123,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
             welcomeDialog.show();
         }
 
+
+
         // Create the Select Player to Break dialog
         builder = new AlertDialog.Builder(MainActivity.this);
         builder.setView(breakView)
@@ -180,8 +182,9 @@ public class MainActivity extends AppCompatActivity {
         matchWinner = matchSummaryView.findViewById(R.id.matchWinner);
         matchScoreSummary = matchSummaryView.findViewById(R.id.matchScoreSummary);
         builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setView(endFrameView);
-        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+        builder.setView(endFrameView)
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogInterface, int i) {
                 updateFrameScore();
                 if ((frameScoreA > matchFormatInt / 2) || (frameScoreB > matchFormatInt / 2)) {
@@ -230,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
         // Create the Frame Summary dialog
         builder = new AlertDialog.Builder(MainActivity.this);
         builder.setView(frameSummaryView)
+                .setCancelable(false)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         frameNumber += 1;
@@ -590,6 +594,7 @@ public class MainActivity extends AppCompatActivity {
         } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 2)) {
             yellowAvailable = 0;
             targetBallCurrent = 3;
+            freeBallSwitch.setChecked(false);
         } else if (freeBallSwitch.isChecked()) {
         } else {
             targetBallCurrent = 1;
@@ -609,6 +614,7 @@ public class MainActivity extends AppCompatActivity {
         } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 3)) {
             greenAvailable = 0;
             targetBallCurrent = 4;
+            freeBallSwitch.setChecked(false);
         } else if (freeBallSwitch.isChecked()) {
         } else {
             targetBallCurrent = 1;
@@ -628,6 +634,7 @@ public class MainActivity extends AppCompatActivity {
         } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 4)) {
             brownAvailable = 0;
             targetBallCurrent = 5;
+            freeBallSwitch.setChecked(false);
         } else if (freeBallSwitch.isChecked()) {
         } else {
             targetBallCurrent = 1;
@@ -647,6 +654,7 @@ public class MainActivity extends AppCompatActivity {
         } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 5)) {
             blueAvailable = 0;
             targetBallCurrent = 6;
+            freeBallSwitch.setChecked(false);
         } else if (freeBallSwitch.isChecked()) {
         } else {
             targetBallCurrent = 1;
@@ -666,6 +674,7 @@ public class MainActivity extends AppCompatActivity {
         } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 6)) {
             pinkAvailable = 0;
             targetBallCurrent = 7;
+            freeBallSwitch.setChecked(false);
         } else if (freeBallSwitch.isChecked()) {
         } else {
             targetBallCurrent = 1;
@@ -682,9 +691,10 @@ public class MainActivity extends AppCompatActivity {
         if (finalRed) {
             targetBallCurrent = 2;
             finalRed = false;
-        } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 6)) {
+        } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 7)) {
             blackAvailable = 0;
             targetBallCurrent = 7;
+            freeBallSwitch.setChecked(false);
         } else if (freeBallSwitch.isChecked()) {
         } else {
             targetBallCurrent = 1;
