@@ -394,6 +394,7 @@ public class MainActivity extends AppCompatActivity {
      * Switches active player
      */
     public void switchPlayer(View view) {
+        finalRed = false;
         if (switchA.isChecked()) {
             playerAName.setBackground(getResources().getDrawable(R.drawable.activeplayerbackground));
             scoreViewA.setBackground(getResources().getDrawable(R.drawable.activeplayerbackground));
