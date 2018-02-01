@@ -273,7 +273,6 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putInt("scoreACurrent", scoreACurrent);
         savedInstanceState.putInt("scoreBCurrent", scoreBCurrent);
         savedInstanceState.putInt("targetBallCurrent", targetBallCurrent);
-        savedInstanceState.putStack("scoreAStack", scoreAStack);
         savedInstanceState.putInt("frameScoreA", frameScoreA);
         savedInstanceState.putInt("frameScoreB", frameScoreB);
         savedInstanceState.putInt("pointsDifference", pointsDifference);
