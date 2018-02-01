@@ -19,9 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
 
+import java.util.Stack;
+
 public class MainActivity extends AppCompatActivity {
 
-    int scoreAOld, scoreACurrent, scoreBOld, scoreBCurrent, frameScoreA, frameScoreB = 0;
+    int scoreACurrent, scoreBCurrent, frameScoreA, frameScoreB = 0;
     int pointsDifference = 0;
     int pointsAvailable = 147;
     int numberOfReds = 15;
@@ -32,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
     int blueAvailable = 5;
     int pinkAvailable = 6;
     int blackAvailable = 7;
-    int targetBallOld, targetBallCurrent;
+    int targetBallCurrent;
     int frameNumber = 1;
+    Stack<Integer> scoreAStack = new Stack<Integer>();
+    Stack<Integer> scoreBStack = new Stack<Integer>();
+    Stack<Integer> targetBallStack = new Stack<Integer>();
 
     TextView playerAName, playerBName, scoreViewA, scoreViewB, frameScoreView, ptsDiff, ptsAvl;
     RadioButton switchA, switchB;
@@ -265,10 +270,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putInt("scoreAOld", scoreAOld);
         savedInstanceState.putInt("scoreACurrent", scoreACurrent);
-        savedInstanceState.putInt("scoreBOld", scoreBOld);
         savedInstanceState.putInt("scoreBCurrent", scoreBCurrent);
+        savedInstanceState.putInt("targetBallCurrent", targetBallCurrent);
+        savedInstanceState.putStack("scoreAStack", scoreAStack);
         savedInstanceState.putInt("frameScoreA", frameScoreA);
         savedInstanceState.putInt("frameScoreB", frameScoreB);
         savedInstanceState.putInt("pointsDifference", pointsDifference);
@@ -284,8 +289,7 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putString("playerAName", nameAEntered);
         savedInstanceState.putString("playerBName", nameBEntered);
         savedInstanceState.putString("matchFormat", matchFormatChosen);
-        savedInstanceState.putInt("targetBallCurrent", targetBallCurrent);
-        savedInstanceState.putInt("targetBallOld", targetBallOld);
+
         savedInstanceState.putBoolean("finalRed", finalRed);
         savedInstanceState.putInt("potValue", potValue);
         if (redBall.isEnabled()) {
@@ -333,10 +337,9 @@ public class MainActivity extends AppCompatActivity {
     public void onRestoreInstanceState(Bundle saveInstanceState) {
         super.onRestoreInstanceState(saveInstanceState);
         if (saveInstanceState != null) {
-            scoreAOld = saveInstanceState.getInt("scoreAOld");
             scoreACurrent = saveInstanceState.getInt("scoreACurrent");
-            scoreBOld = saveInstanceState.getInt("scoreBOld");
             scoreBCurrent = saveInstanceState.getInt("scoreBCurrent");
+            targetBallCurrent = saveInstanceState.getInt("targetBallCurrent");
             frameScoreA = saveInstanceState.getInt("frameScoreA");
             frameScoreB = saveInstanceState.getInt("frameScoreB");
             pointsDifference = saveInstanceState.getInt("pointsDifference");
@@ -352,8 +355,6 @@ public class MainActivity extends AppCompatActivity {
             nameAEntered = saveInstanceState.getString("playerAName");
             nameBEntered = saveInstanceState.getString("playerBName");
             matchFormatChosen = saveInstanceState.getString("matchFormat");
-            targetBallCurrent = saveInstanceState.getInt("targetBallCurrent");
-            targetBallOld = saveInstanceState.getInt("targetBallOld");
             finalRed = saveInstanceState.getBoolean("finalRed");
             potValue = saveInstanceState.getInt("potValue");
             redBall.setEnabled(saveInstanceState.getBoolean("redBallState"));
@@ -412,6 +413,9 @@ public class MainActivity extends AppCompatActivity {
             freeBallSwitch.setChecked(false);
             enableButtons();
         }
+        scoreAStack.clear();
+        scoreBStack.clear();
+        targetBallStack.clear();
     }
 
     /**
@@ -532,13 +536,13 @@ public class MainActivity extends AppCompatActivity {
      * Adds points for potting a ball
      */
     public void addPoints(int potValue) {
+        scoreAStack.push(scoreACurrent);
+        scoreBStack.push(scoreBCurrent);
         if (freeBallSwitch.isChecked()) {
             if (switchA.isChecked()) {
-                scoreAOld = scoreACurrent;
                 scoreACurrent += targetBallCurrent;
                 displayForPlayerA(scoreACurrent);
             } else if (switchB.isChecked()) {
-                scoreBOld = scoreBCurrent;
                 scoreBCurrent += targetBallCurrent;
                 displayForPlayerB(scoreBCurrent);
             }
@@ -548,11 +552,9 @@ public class MainActivity extends AppCompatActivity {
             freeBallSwitch.setChecked(false);
         } else {
             if (switchA.isChecked()) {
-                scoreAOld = scoreACurrent;
                 scoreACurrent += potValue;
                 displayForPlayerA(scoreACurrent);
             } else if (switchB.isChecked()) {
-                scoreBOld = scoreBCurrent;
                 scoreBCurrent += potValue;
                 displayForPlayerB(scoreBCurrent);
             }
@@ -568,7 +570,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void potRed(View v) {
         numberOfReds -= 1;
-        targetBallOld = targetBallCurrent;
+        targetBallStack.push(targetBallCurrent);
         if (numberOfReds == 0 && !freeBallSwitch.isChecked()) {
             targetBallCurrent = 2;
             finalRed = true;
@@ -588,7 +590,7 @@ public class MainActivity extends AppCompatActivity {
      * Adds 2 points for potting the yellow ball.
      */
     public void potYellow(View v) {
-        targetBallOld = targetBallCurrent;
+        targetBallStack.push(targetBallCurrent);
         if (finalRed) {
             targetBallCurrent = 2;
             finalRed = false;
@@ -608,7 +610,7 @@ public class MainActivity extends AppCompatActivity {
      * Adds 3 points for potting the green ball.
      */
     public void potGreen(View v) {
-        targetBallOld = targetBallCurrent;
+        targetBallStack.push(targetBallCurrent);
         if (finalRed) {
             targetBallCurrent = 2;
             finalRed = false;
@@ -628,7 +630,7 @@ public class MainActivity extends AppCompatActivity {
      * Adds 4 points for potting the brown ball.
      */
     public void potBrown(View v) {
-        targetBallOld = targetBallCurrent;
+        targetBallStack.push(targetBallCurrent);
         if (finalRed) {
             targetBallCurrent = 2;
             finalRed = false;
@@ -648,7 +650,7 @@ public class MainActivity extends AppCompatActivity {
      * Adds 5 points for potting the blue ball.
      */
     public void potBlue(View v) {
-        targetBallOld = targetBallCurrent;
+        targetBallStack.push(targetBallCurrent);
         if (finalRed) {
             targetBallCurrent = 2;
             finalRed = false;
@@ -668,7 +670,7 @@ public class MainActivity extends AppCompatActivity {
      * Adds 6 points for potting the pink ball.
      */
     public void potPink(View v) {
-        targetBallOld = targetBallCurrent;
+        targetBallStack.push(targetBallCurrent);
         if (finalRed) {
             targetBallCurrent = 2;
             finalRed = false;
@@ -688,7 +690,7 @@ public class MainActivity extends AppCompatActivity {
      * Adds 7 points for potting the black ball.
      */
     public void potBlack(View v) {
-        targetBallOld = targetBallCurrent;
+        targetBallStack.push(targetBallCurrent);
         if (finalRed) {
             targetBallCurrent = 2;
             finalRed = false;
@@ -708,12 +710,13 @@ public class MainActivity extends AppCompatActivity {
      * Adds points to the opponent for a foul
      */
     public void addFoul(int foulValue) {
+        scoreAStack.push(scoreACurrent);
+        scoreBStack.push(scoreBCurrent);
+        targetBallStack.push(targetBallCurrent);
         if (switchA.isChecked()) {
-            scoreBOld = scoreBCurrent;
             scoreBCurrent = scoreBCurrent + foulValue;
             displayForPlayerB(scoreBCurrent);
         } else if (switchB.isChecked()) {
-            scoreAOld = scoreACurrent;
             scoreACurrent = scoreACurrent + foulValue;
             displayForPlayerA(scoreACurrent);
         }
@@ -758,56 +761,38 @@ public class MainActivity extends AppCompatActivity {
      * Undoes the last points added
      */
     public void undo(View v) {
-        if (((switchA.isChecked() && !lastPointsFouled)) || (switchB.isChecked() && lastPointsFouled)) {
-            if (scoreACurrent == scoreAOld + 1) {
-                numberOfReds = numberOfReds + 1;
-            }
-            if ((scoreACurrent == scoreAOld + 2) && (yellowAvailable == 0)) {
-                yellowAvailable = 2;
-            }
-            if ((scoreACurrent == scoreAOld + 3) && (greenAvailable == 0)) {
-                greenAvailable = 3;
-            }
-            if ((scoreACurrent == scoreAOld + 4) && (brownAvailable == 0)) {
-                brownAvailable = 4;
-            }
-            if ((scoreACurrent == scoreAOld + 5) && (blueAvailable == 0)) {
-                blueAvailable = 5;
-            }
-            if ((scoreACurrent == scoreAOld + 6) && (pinkAvailable == 0)) {
-                pinkAvailable = 6;
-            }
-            if ((scoreACurrent == scoreAOld + 7) && (blackAvailable == 0)) {
-                blackAvailable = 7;
-            }
-            scoreACurrent = scoreAOld;
-            displayForPlayerA(scoreACurrent);
-        } else if (((switchB.isChecked() && !lastPointsFouled)) || (switchA.isChecked() && lastPointsFouled)) {
-            if (scoreBCurrent == scoreBOld + 1) {
-                numberOfReds = numberOfReds + 1;
-            }
-            if ((scoreBCurrent == scoreBOld + 2) && (yellowAvailable == 0)) {
-                yellowAvailable = 2;
-            }
-            if ((scoreBCurrent == scoreBOld + 3) && (greenAvailable == 0)) {
-                greenAvailable = 3;
-            }
-            if ((scoreBCurrent == scoreBOld + 4) && (brownAvailable == 0)) {
-                brownAvailable = 4;
-            }
-            if ((scoreBCurrent == scoreBOld + 5) && (blueAvailable == 0)) {
-                blueAvailable = 5;
-            }
-            if ((scoreBCurrent == scoreBOld + 6) && (pinkAvailable == 0)) {
-                pinkAvailable = 6;
-            }
-            if ((scoreBCurrent == scoreBOld + 7) && (blackAvailable == 0)) {
-                blackAvailable = 7;
-            }
-            scoreBCurrent = scoreBOld;
-            displayForPlayerB(scoreBCurrent);
+        if (scoreAStack.isEmpty() || scoreBStack.isEmpty()) {
+            return;
         }
-        targetBallCurrent = targetBallOld;
+        if (switchA.isChecked() && (scoreACurrent == scoreAStack.peek() + 1)) {
+            numberOfReds = numberOfReds + 1;
+        }
+        if (switchB.isChecked() && (scoreBCurrent == scoreBStack.peek() + 1)) {
+            numberOfReds = numberOfReds + 1;
+        }
+        if (((scoreACurrent == scoreAStack.peek() + 2) || (scoreBCurrent == scoreBStack.peek() + 2)) && (yellowAvailable == 0)) {
+            yellowAvailable = 2;
+        }
+        if (((scoreACurrent == scoreAStack.peek() + 3) || (scoreBCurrent == scoreBStack.peek() + 3)) && (greenAvailable == 0)) {
+            greenAvailable = 3;
+        }
+        if (((scoreACurrent == scoreAStack.peek() + 4) || (scoreBCurrent == scoreBStack.peek() + 4)) && (brownAvailable == 0)) {
+            brownAvailable = 4;
+        }
+        if (((scoreACurrent == scoreAStack.peek() + 5) || (scoreBCurrent == scoreBStack.peek() + 5)) && (blueAvailable == 0)) {
+            blueAvailable = 5;
+        }
+        if (((scoreACurrent == scoreAStack.peek() + 6) || (scoreBCurrent == scoreBStack.peek() + 6)) && (pinkAvailable == 0)) {
+            pinkAvailable = 6;
+        }
+        if (((scoreACurrent == scoreAStack.peek() + 7) || (scoreBCurrent == scoreBStack.peek() + 7)) && (blackAvailable == 0)) {
+            blackAvailable = 7;
+        }
+        scoreACurrent = scoreAStack.pop();
+        scoreBCurrent = scoreBStack.pop();
+        displayForPlayerA(scoreACurrent);
+        displayForPlayerB(scoreBCurrent);
+        targetBallCurrent = targetBallStack.pop();
         calcPointsDiff();
         calcPointsAvail();
         enableButtons();
@@ -876,9 +861,7 @@ public class MainActivity extends AppCompatActivity {
      * Resets all variables apart from frame score to initial values
      */
     public void resetVariables() {
-        scoreAOld = 0;
         scoreACurrent = 0;
-        scoreBOld = 0;
         scoreBCurrent = 0;
         pointsDifference = 0;
         pointsAvailable = 147;
@@ -894,6 +877,9 @@ public class MainActivity extends AppCompatActivity {
         matchFormat.setSelection(0);
         targetBallCurrent = 1;
         enableButtons();
+        scoreAStack.clear();
+        scoreBStack.clear();
+        targetBallStack.clear();
     }
 
     /**
