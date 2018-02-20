@@ -571,6 +571,49 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Updates the current target ball when a coloured ball is potted
+     */
+    public void updateTargetBall(int potValue) {
+        targetBallStack.push(targetBallCurrent);
+        // If the final red was just potted next target is the yellow ball
+        if (finalRed) {
+            targetBallCurrent = 2;
+            finalRed = false;
+        // If all reds have been potted and the correct colour is potted
+        } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == potValue)) {
+            if (potValue == 2) {
+                yellowAvailable = 0;
+            }
+            if (potValue == 3) {
+                greenAvailable = 0;
+            }
+            if (potValue == 4) {
+                brownAvailable = 0;
+            }
+            if (potValue == 5) {
+                blueAvailable = 0;
+            }
+            if (potValue == 6) {
+                pinkAvailable = 0;
+            }
+            if (potValue == 7) {
+                blackAvailable = 0;
+            }
+            if (potValue < 7) {
+                targetBallCurrent = potValue + 1;
+            } else {
+                targetBallCurrent = potValue;
+            }
+            freeBallSwitch.setChecked(false);
+        // If there is currently a free ball situation
+        } else if (freeBallSwitch.isChecked()) {
+        // If a colour is potted and there are still reds remaining
+        } else {
+            targetBallCurrent = 1;
+        }
+    }
+
+    /**
      * Adds 1 point for potting a red ball and sets current target ball
      */
     public void potRed(View v) {
@@ -599,19 +642,8 @@ public class MainActivity extends AppCompatActivity {
      * Adds 2 points for potting the yellow ball and sets current target ball
      */
     public void potYellow(View v) {
-        targetBallStack.push(targetBallCurrent);
-        if (finalRed) {
-            targetBallCurrent = 2;
-            finalRed = false;
-        } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 2)) {
-            yellowAvailable = 0;
-            targetBallCurrent = 3;
-            freeBallSwitch.setChecked(false);
-        } else if (freeBallSwitch.isChecked()) {
-        } else {
-            targetBallCurrent = 1;
-        }
         potValue = 2;
+        updateTargetBall(potValue);
         addPoints(potValue);
     }
 
@@ -619,99 +651,44 @@ public class MainActivity extends AppCompatActivity {
      * Adds 3 points for potting the green ball and sets current target ball
      */
     public void potGreen(View v) {
-        targetBallStack.push(targetBallCurrent);
-        if (finalRed) {
-            targetBallCurrent = 2;
-            finalRed = false;
-        } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 3)) {
-            greenAvailable = 0;
-            targetBallCurrent = 4;
-            freeBallSwitch.setChecked(false);
-        } else if (freeBallSwitch.isChecked()) {
-        } else {
-            targetBallCurrent = 1;
-        }
         potValue = 3;
+        updateTargetBall(potValue);
         addPoints(potValue);
     }
 
     /**
-     * Adds 4 points for potting the brown ball.
+     * Adds 4 points for potting the brown ball and sets current target ball
      */
     public void potBrown(View v) {
-        targetBallStack.push(targetBallCurrent);
-        if (finalRed) {
-            targetBallCurrent = 2;
-            finalRed = false;
-        } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 4)) {
-            brownAvailable = 0;
-            targetBallCurrent = 5;
-            freeBallSwitch.setChecked(false);
-        } else if (freeBallSwitch.isChecked()) {
-        } else {
-            targetBallCurrent = 1;
-        }
         potValue = 4;
+        updateTargetBall(potValue);
         addPoints(potValue);
     }
 
     /**
-     * Adds 5 points for potting the blue ball.
+     * Adds 5 points for potting the blue ball and sets current target ball
      */
     public void potBlue(View v) {
-        targetBallStack.push(targetBallCurrent);
-        if (finalRed) {
-            targetBallCurrent = 2;
-            finalRed = false;
-        } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 5)) {
-            blueAvailable = 0;
-            targetBallCurrent = 6;
-            freeBallSwitch.setChecked(false);
-        } else if (freeBallSwitch.isChecked()) {
-        } else {
-            targetBallCurrent = 1;
-        }
         potValue = 5;
+        updateTargetBall(potValue);
         addPoints(potValue);
     }
 
     /**
-     * Adds 6 points for potting the pink ball.
+     * Adds 6 points for potting the pink ball and sets current target ball
      */
     public void potPink(View v) {
-        targetBallStack.push(targetBallCurrent);
-        if (finalRed) {
-            targetBallCurrent = 2;
-            finalRed = false;
-        } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 6)) {
-            pinkAvailable = 0;
-            targetBallCurrent = 7;
-            freeBallSwitch.setChecked(false);
-        } else if (freeBallSwitch.isChecked()) {
-        } else {
-            targetBallCurrent = 1;
-        }
         potValue = 6;
+        updateTargetBall(potValue);
         addPoints(potValue);
     }
 
     /**
-     * Adds 7 points for potting the black ball.
+     * Adds 7 points for potting the black ball and sets current target ball
      */
     public void potBlack(View v) {
-        targetBallStack.push(targetBallCurrent);
-        if (finalRed) {
-            targetBallCurrent = 2;
-            finalRed = false;
-        } else if ((numberOfReds == 0 && !freeBallSwitch.isChecked()) || (targetBallCurrent == 7)) {
-            blackAvailable = 0;
-            targetBallCurrent = 7;
-            freeBallSwitch.setChecked(false);
-        } else if (freeBallSwitch.isChecked()) {
-        } else {
-            targetBallCurrent = 1;
-        }
         potValue = 7;
+        updateTargetBall(potValue);
         addPoints(potValue);
     }
 
