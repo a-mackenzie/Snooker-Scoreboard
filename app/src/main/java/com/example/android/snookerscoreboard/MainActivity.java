@@ -1,15 +1,12 @@
 package com.example.android.snookerscoreboard;
 
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -18,34 +15,41 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
-
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Declare/initialise variables for tracking the scores
     int scoreACurrent, scoreBCurrent, frameScoreA, frameScoreB = 0;
     int pointsDifference = 0;
     int pointsAvailable = 147;
+    // numberOfReds => number of reds still available to pot
     int numberOfReds = 15;
     int potValue, foulValue;
+    // These variables indicate the points available remaining for potting each of the colours
     int yellowAvailable = 2;
     int greenAvailable = 3;
     int brownAvailable = 4;
     int blueAvailable = 5;
     int pinkAvailable = 6;
     int blackAvailable = 7;
+    // targetBallCurrent => indicates which ball should be potted next. 0 = any colour, 1 = a red, 2 = yellow, 3 = green etc.
     int targetBallCurrent;
     int frameNumber = 1;
-    Stack<Integer> scoreAStack = new Stack<Integer>();
-    Stack<Integer> scoreBStack = new Stack<Integer>();
-    Stack<Integer> targetBallStack = new Stack<Integer>();
+    // Stacks used to store multiple old values of scores to enable mutliple undos
+    Stack<Integer> scoreAStack;
+    Stack<Integer> scoreBStack;
+    Stack<Integer> targetBallStack;
 
+    // Declare the variables for all views
     TextView playerAName, playerBName, scoreViewA, scoreViewB, frameScoreView, ptsDiff, ptsAvl;
     RadioButton switchA, switchB;
     Switch freeBallSwitch;
-    Boolean lastPointsFouled, finalRed;
+    // finalRed => Indicates if the final red ball has just been potted. Used to allow correct enabling of ball buttons before going down to just the coloured balls
+    Boolean finalRed;
     ImageButton redBall, yellowBall, greenBall, brownBall, blueBall, pinkBall, blackBall;
 
+    // Declare the variables requried for the alert dialogs
     AlertDialog.Builder builder;
     View welcomeView, breakView, resetView, endFrameView, frameSummaryView, matchSummaryView;
     AlertDialog welcomeDialog, breakDialog, resetDialog, endFrameDialog, frameSummaryDialog, matchSummaryDialog;
@@ -55,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
     String nameAEntered, nameBEntered, matchFormatChosen;
     RadioButton breakA, breakB;
     String nextBreaker;
-
     TextView frameSummaryTitle, nextBreakerView, frameWinner, frameScoreSummary;
     TextView matchWinner, matchScoreSummary;
 
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialise all required variables
         playerAName = findViewById(R.id.playerAName);
         playerBName = findViewById(R.id.playerBName);
         scoreViewA = findViewById(R.id.scoreA);
@@ -81,13 +85,16 @@ public class MainActivity extends AppCompatActivity {
         blueBall = findViewById(R.id.blueBall);
         pinkBall = findViewById(R.id.pinkBall);
         blackBall = findViewById(R.id.blackBall);
-        lastPointsFouled = false;
         finalRed = false;
         targetBallCurrent = 1;
+        scoreAStack = new Stack<Integer>();
+        scoreBStack = new Stack<Integer>();
+        targetBallStack = new Stack<Integer>();
+
+        // Run enable buttons method to enable correct buttons active on app startup
         enableButtons();
 
         // Create the Welcome dialog
-
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         welcomeView = inflater.inflate(R.layout.dialog_welcome, null);
         enterPlayerA = welcomeView.findViewById(R.id.enterPlayerA);
@@ -128,8 +135,6 @@ public class MainActivity extends AppCompatActivity {
             welcomeDialog.show();
         }
 
-
-
         // Create the Select Player to Break dialog
         builder = new AlertDialog.Builder(MainActivity.this);
         builder.setView(breakView)
@@ -154,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
                         breakDialog.dismiss();
                     }
                 });
-
         breakDialog = builder.create();
 
         // Create the Reset dialog
@@ -263,13 +267,11 @@ public class MainActivity extends AppCompatActivity {
         matchSummaryDialog = builder.create();
     }
 
-
-
     //Save the state of the variables and text after the screen orientation changes.
-
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
+        // Save all variables
         savedInstanceState.putInt("scoreACurrent", scoreACurrent);
         savedInstanceState.putInt("scoreBCurrent", scoreBCurrent);
         savedInstanceState.putInt("targetBallCurrent", targetBallCurrent);
@@ -284,13 +286,13 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putInt("blueAvailable", blueAvailable);
         savedInstanceState.putInt("pinkAvailable", pinkAvailable);
         savedInstanceState.putInt("blackAvailable", blackAvailable);
-        savedInstanceState.putBoolean("lastPointsFouled", lastPointsFouled);
         savedInstanceState.putString("playerAName", nameAEntered);
         savedInstanceState.putString("playerBName", nameBEntered);
         savedInstanceState.putString("matchFormat", matchFormatChosen);
-
         savedInstanceState.putBoolean("finalRed", finalRed);
         savedInstanceState.putInt("potValue", potValue);
+
+        // Save correct active state of ball buttons
         if (redBall.isEnabled()) {
             savedInstanceState.putBoolean("redBallState", true);
         } else {
@@ -326,16 +328,15 @@ public class MainActivity extends AppCompatActivity {
         } else {
             savedInstanceState.putBoolean("blackBallState", false);
         }
-
         super.onSaveInstanceState(savedInstanceState);
     }
 
     //Restore the state of the variables and text after the screen orientation changes.
-
     @Override
     public void onRestoreInstanceState(Bundle saveInstanceState) {
         super.onRestoreInstanceState(saveInstanceState);
         if (saveInstanceState != null) {
+            // Restore all variables
             scoreACurrent = saveInstanceState.getInt("scoreACurrent");
             scoreBCurrent = saveInstanceState.getInt("scoreBCurrent");
             targetBallCurrent = saveInstanceState.getInt("targetBallCurrent");
@@ -350,7 +351,6 @@ public class MainActivity extends AppCompatActivity {
             blueAvailable = saveInstanceState.getInt("blueAvailable");
             pinkAvailable = saveInstanceState.getInt("pinkAvailable");
             blackAvailable = saveInstanceState.getInt("blackAvailable");
-            lastPointsFouled = saveInstanceState.getBoolean("lastPointsFouled");
             nameAEntered = saveInstanceState.getString("playerAName");
             nameBEntered = saveInstanceState.getString("playerBName");
             matchFormatChosen = saveInstanceState.getString("matchFormat");
@@ -363,7 +363,6 @@ public class MainActivity extends AppCompatActivity {
             blueBall.setEnabled(saveInstanceState.getBoolean("blueBallState"));
             pinkBall.setEnabled(saveInstanceState.getBoolean("pinkBallState"));
             blackBall.setEnabled(saveInstanceState.getBoolean("blackBallState"));
-
             scoreViewA.setText(String.valueOf(scoreACurrent));
             scoreViewB.setText(String.valueOf(scoreBCurrent));
             ptsDiff.setText(String.valueOf("Pts Diff: " + pointsDifference));
@@ -372,6 +371,7 @@ public class MainActivity extends AppCompatActivity {
             playerBName.setText(String.valueOf(nameBEntered));
             frameScoreView.setText(getResources().getString(R.string.frameScore, frameScoreA, matchFormatChosen, frameScoreB));
 
+            // Set correct active player on restore
             if (switchA.isChecked()) {
                 playerAName.setBackground(getResources().getDrawable(R.drawable.activeplayerbackground));
                 scoreViewA.setBackground(getResources().getDrawable(R.drawable.activeplayerbackground));
@@ -385,6 +385,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        // Displays the welcome dialog if the orientation is changed before details have been entered
         if (nameAEntered == null) {
             welcomeDialog.show();
         }
@@ -424,14 +425,12 @@ public class MainActivity extends AppCompatActivity {
         scoreViewA.setText(String.valueOf(score));
     }
 
-
     /**
      * Displays the score for Player B.
      */
     public void displayForPlayerB(int score) {
         scoreViewB.setText(String.valueOf(score));
     }
-
 
     /**
      * Displays the frame score
@@ -441,10 +440,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Enables/Disables the buttons
+     * Enables/Disables the buttons as required based on current target ball
      */
     public void enableButtons() {
+        // If there are still reds on the table
         if (numberOfReds > 0) {
+            // If the current target ball is a red
             if (targetBallCurrent == 1) {
                 redBall.setEnabled(true);
                 yellowBall.setEnabled(false);
@@ -454,6 +455,7 @@ public class MainActivity extends AppCompatActivity {
                 pinkBall.setEnabled(false);
                 blackBall.setEnabled(false);
                 freeBallSwitch.setEnabled(true);
+            // If the current target ball is any colour
             } else if (targetBallCurrent == 0) {
                 redBall.setEnabled(false);
                 yellowBall.setEnabled(true);
@@ -464,6 +466,7 @@ public class MainActivity extends AppCompatActivity {
                 blackBall.setEnabled(true);
                 freeBallSwitch.setEnabled(false);
             }
+        // If the final red has just been potted
         } else if (finalRed) {
             redBall.setEnabled(false);
             yellowBall.setEnabled(true);
@@ -482,6 +485,7 @@ public class MainActivity extends AppCompatActivity {
             pinkBall.setEnabled(false);
             blackBall.setEnabled(false);
             freeBallSwitch.setEnabled(true);
+            // If only the colours remaining, activating each in turn
             if (yellowAvailable == 2) {
                 yellowBall.setEnabled(true);
             } else if (greenAvailable == 3) {
@@ -535,8 +539,10 @@ public class MainActivity extends AppCompatActivity {
      * Adds points for potting a ball
      */
     public void addPoints(int potValue) {
+        // Update score stacks with previous scores
         scoreAStack.push(scoreACurrent);
         scoreBStack.push(scoreBCurrent);
+        // Actions if the current player has a free ball
         if (freeBallSwitch.isChecked()) {
             if (switchA.isChecked()) {
                 scoreACurrent += targetBallCurrent;
@@ -549,6 +555,7 @@ public class MainActivity extends AppCompatActivity {
                 targetBallCurrent = 0;
             }
             freeBallSwitch.setChecked(false);
+        // Actions if the current player does not have a free ball
         } else {
             if (switchA.isChecked()) {
                 scoreACurrent += potValue;
@@ -560,24 +567,27 @@ public class MainActivity extends AppCompatActivity {
         }
         calcPointsDiff();
         calcPointsAvail();
-        lastPointsFouled = false;
         enableButtons();
     }
 
     /**
-     * Adds 1 point for potting a red ball.
+     * Adds 1 point for potting a red ball and sets current target ball
      */
     public void potRed(View v) {
         numberOfReds -= 1;
         targetBallStack.push(targetBallCurrent);
+        // If final red has just been potted and it was not a free ball situation
         if (numberOfReds == 0 && !freeBallSwitch.isChecked()) {
             targetBallCurrent = 2;
             finalRed = true;
+        // If final red has just been potted and it was a free ball situation
         } else if (numberOfReds == 0 && freeBallSwitch.isChecked()) {
             targetBallCurrent = 1;
             finalRed = true;
+        // If it is a free ball situation
         } else if (freeBallSwitch.isChecked()) {
             targetBallCurrent = 1;
+        // If it is a regular situation
         } else {
             targetBallCurrent = 0;
         }
@@ -586,7 +596,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Adds 2 points for potting the yellow ball.
+     * Adds 2 points for potting the yellow ball and sets current target ball
      */
     public void potYellow(View v) {
         targetBallStack.push(targetBallCurrent);
@@ -606,7 +616,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Adds 3 points for potting the green ball.
+     * Adds 3 points for potting the green ball and sets current target ball
      */
     public void potGreen(View v) {
         targetBallStack.push(targetBallCurrent);
@@ -721,7 +731,6 @@ public class MainActivity extends AppCompatActivity {
         }
         calcPointsDiff();
         calcPointsAvail();
-        lastPointsFouled = true;
     }
 
     /**
@@ -757,18 +766,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Undoes the last points added
+     * Un-does the last points added when the 'Undo' button is pressed
      */
     public void undo(View v) {
+        // Checks if stacks are empty and no more undo's can take place
         if (scoreAStack.isEmpty() || scoreBStack.isEmpty()) {
             return;
         }
+        // If the last ball potted was a red this adds one back to the available reds
         if (switchA.isChecked() && (scoreACurrent == scoreAStack.peek() + 1)) {
             numberOfReds = numberOfReds + 1;
         }
         if (switchB.isChecked() && (scoreBCurrent == scoreBStack.peek() + 1)) {
             numberOfReds = numberOfReds + 1;
         }
+        // Replaces colours back on to the table if applicable
         if (((scoreACurrent == scoreAStack.peek() + 2) || (scoreBCurrent == scoreBStack.peek() + 2)) && (yellowAvailable == 0)) {
             yellowAvailable = 2;
         }
@@ -787,6 +799,7 @@ public class MainActivity extends AppCompatActivity {
         if (((scoreACurrent == scoreAStack.peek() + 7) || (scoreBCurrent == scoreBStack.peek() + 7)) && (blackAvailable == 0)) {
             blackAvailable = 7;
         }
+        // Resets scores and target ball to previous values and displays them
         scoreACurrent = scoreAStack.pop();
         scoreBCurrent = scoreBStack.pop();
         displayForPlayerA(scoreACurrent);
@@ -836,68 +849,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Calculates if any reds are remaining and removes colours if necessary.
-     */
-    public void removeColours() {
-        if (numberOfReds > 0) {
-            ;
-        } else if (yellowAvailable > 0) {
-            yellowAvailable = 0;
-        } else if (greenAvailable > 0) {
-            greenAvailable = 0;
-        } else if (brownAvailable > 0) {
-            brownAvailable = 0;
-        } else if (blueAvailable > 0) {
-            blueAvailable = 0;
-        } else if (pinkAvailable > 0) {
-            pinkAvailable = 0;
-        } else if (blackAvailable > 0) {
-            blackAvailable = 0;
-        }
-    }
-
-    /**
-     * Resets all variables apart from frame score to initial values
-     */
-    public void resetVariables() {
-        scoreACurrent = 0;
-        scoreBCurrent = 0;
-        pointsDifference = 0;
-        pointsAvailable = 147;
-        numberOfReds = 15;
-        yellowAvailable = 2;
-        greenAvailable = 3;
-        brownAvailable = 4;
-        blueAvailable = 5;
-        pinkAvailable = 6;
-        blackAvailable = 7;
-        enterPlayerA.setText("");
-        enterPlayerB.setText("");
-        matchFormat.setSelection(0);
-        targetBallCurrent = 1;
-        enableButtons();
-        scoreAStack.clear();
-        scoreBStack.clear();
-        targetBallStack.clear();
-    }
-
-    /**
-     * Resets everything
-     */
-    public void resetAll() {
-        resetVariables();
-        frameScoreA = 0;
-        frameScoreB = 0;
-        frameNumber = 1;
-        displayForPlayerA(scoreACurrent);
-        displayForPlayerB(scoreBCurrent);
-        displayFrameScore();
-        displayPointsAvailable(pointsAvailable);
-        displayPointsDifference(pointsDifference);
-    }
-
-    /**
-     * Opens the End Frame dialog
+     * Opens the End Frame dialog when the 'End Frame' button is pressed
      */
     public void openEndFrameDialog(View view) {
         if (scoreACurrent != scoreBCurrent) {
@@ -922,7 +874,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Ends the frame and resets all variables.
+     * Ends the frame and resets all variables
      */
     public void endFrame() {
         resetVariables();
@@ -948,10 +900,49 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Opens the Reset Dialog
+     * Opens the Reset Dialog when the 'Reset All' button is pressed
      */
     public void openResetDialog(View view) {
         resetDialog.show();
     }
 
+    /**
+     * Resets all variables. Used when resetting the app
+     */
+    public void resetAll() {
+        resetVariables();
+        frameScoreA = 0;
+        frameScoreB = 0;
+        frameNumber = 1;
+        displayForPlayerA(scoreACurrent);
+        displayForPlayerB(scoreBCurrent);
+        displayFrameScore();
+        displayPointsAvailable(pointsAvailable);
+        displayPointsDifference(pointsDifference);
+    }
+
+    /**
+     * Resets all variables apart from frame score to initial values. Used when starting a new frame
+     */
+    public void resetVariables() {
+        scoreACurrent = 0;
+        scoreBCurrent = 0;
+        pointsDifference = 0;
+        pointsAvailable = 147;
+        numberOfReds = 15;
+        yellowAvailable = 2;
+        greenAvailable = 3;
+        brownAvailable = 4;
+        blueAvailable = 5;
+        pinkAvailable = 6;
+        blackAvailable = 7;
+        enterPlayerA.setText("");
+        enterPlayerB.setText("");
+        matchFormat.setSelection(0);
+        targetBallCurrent = 1;
+        enableButtons();
+        scoreAStack.clear();
+        scoreBStack.clear();
+        targetBallStack.clear();
+    }
 }

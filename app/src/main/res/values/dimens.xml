@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Dimenstions for the Header-->
     <dimen name="headerPaddingH">54dp</dimen>
     <dimen name="headerPaddingTop">8dp</dimen>
 
-    <dimen name="landHeaderPaddingH">240dp</dimen>
-
+    <!-- Dimenstions for the Player Name views-->
     <dimen name="playerNameMarginOut">16dp</dimen>
     <dimen name="playerNameMarginIn">-2dp</dimen>
     <dimen name="playerNameMarginV">8dp</dimen>
     <dimen name="playerNamePadding">8dp</dimen>
+
+    <!-- Dimenstions for the Score views-->
     <dimen name="playerScoreMargin">16dp</dimen>
-
-    <dimen name="landPlayerNameMarginIn">128dp</dimen>
-
     <dimen name="frameScoreMargin">8dp</dimen>
+    <dimen name="pointsDiffMargin">8dp</dimen>
 
+    <!-- Dimenstions for the control buttons/switch-->
     <dimen name="switchTextPadding">8dp</dimen>
     <dimen name="switchRadioButtonMargin">32dp</dimen>
 
+    <!-- Dimenstions for the Ball Buttons-->
     <dimen name="ballButtonPaddingDefault">2dp</dimen>
     <dimen name="ballButtonPaddingPressed">1dp</dimen>
     <dimen name="ballButtonMargin">4dp</dimen>
     <dimen name="ballButtonSize">50dp</dimen>
     <dimen name="ballLayoutMargin">36dp</dimen>
 
+    <!-- Dimenstions for the Foul buttons-->
     <dimen name="foulButtonWidth">50dp</dimen>
     <dimen name="foulButtonHeight">40dp</dimen>
 
+    <!-- Dimenstions for the app control buttons-->
     <dimen name="controlButtonMargin">8dp</dimen>
     <dimen name="controlButtonHeight">30dp</dimen>
     <dimen name="controlButtonMarginBottom">24dp</dimen>
 
-    <dimen name="pointsDiffMargin">4dp</dimen>
-
+    <!-- Dimenstions for the alert dialogs-->
     <dimen name="dialogMargin">16dp</dimen>
     <dimen name="dialogEditTextMargin">54dp</dimen>
     <dimen name="dialogTextMargin">8dp</dimen>
     <dimen name="dialogLineMarginH">32dp</dimen>
-
     <dimen name="spinnerWidth">100dp</dimen>
     <dimen name="spinnerTextPadding">2dp</dimen>
+
+    <!-- Dimenstions specific to the landscape layout-->
+    <dimen name="landHeaderPaddingH">240dp</dimen>
+    <dimen name="landPlayerNameMarginIn">128dp</dimen>
 
 </resources>
