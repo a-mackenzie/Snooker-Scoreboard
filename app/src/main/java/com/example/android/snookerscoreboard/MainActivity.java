@@ -15,17 +15,27 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.AlertDialog;
+
+import org.w3c.dom.Text;
+
 import java.util.Stack;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
     // Declare/initialise variables for tracking the scores
-    int scoreACurrent, scoreBCurrent, frameScoreA, frameScoreB = 0;
+    int scoreACurrent = 0;
+    int scoreBCurrent = 0;
+    int frameScoreA = 0;
+    int frameScoreB = 0;
     int pointsDifference = 0;
     int pointsAvailable = 147;
     // numberOfReds => number of reds still available to pot
     int numberOfReds = 15;
-    int potValue, foulValue;
+    int potValue;
+    int foulValue;
     // These variables indicate the points available remaining for potting each of the colours
     int yellowAvailable = 2;
     int greenAvailable = 3;
@@ -42,49 +52,64 @@ public class MainActivity extends AppCompatActivity {
     Stack<Integer> targetBallStack;
 
     // Declare the variables for all views
-    TextView playerAName, playerBName, scoreViewA, scoreViewB, frameScoreView, ptsDiff, ptsAvl;
-    RadioButton switchA, switchB;
-    Switch freeBallSwitch;
+    @BindView(R.id.playerAName) TextView playerAName;
+    @BindView(R.id.playerBName) TextView playerBName;
+    @BindView(R.id.scoreA) TextView scoreViewA;
+    @BindView(R.id.scoreB) TextView scoreViewB;
+    @BindView(R.id.frameScore) TextView frameScoreView;
+    @BindView(R.id.pointsDifference) TextView ptsDiff;
+    @BindView(R.id.pointsAvailable) TextView ptsAvl;
+    @BindView(R.id.switchA) RadioButton switchA;
+    @BindView(R.id.switchB) RadioButton switchB;
+    @BindView(R.id.freeBallSwitch) Switch freeBallSwitch;
     // finalRed => Indicates if the final red ball has just been potted. Used to allow correct enabling of ball buttons before going down to just the coloured balls
     Boolean finalRed;
-    ImageButton redBall, yellowBall, greenBall, brownBall, blueBall, pinkBall, blackBall;
+    @BindView(R.id.redBall) ImageButton redBall;
+    @BindView(R.id.yellowBall) ImageButton yellowBall;
+    @BindView(R.id.greenBall) ImageButton greenBall;
+    @BindView(R.id.brownBall) ImageButton brownBall;
+    @BindView(R.id.blueBall) ImageButton blueBall;
+    @BindView(R.id.pinkBall) ImageButton pinkBall;
+    @BindView(R.id.blackBall) ImageButton blackBall;
 
     // Declare the variables requried for the alert dialogs
     AlertDialog.Builder builder;
-    View welcomeView, breakView, resetView, endFrameView, frameSummaryView, matchSummaryView;
-    AlertDialog welcomeDialog, breakDialog, resetDialog, endFrameDialog, frameSummaryDialog, matchSummaryDialog;
-    EditText enterPlayerA, enterPlayerB;
+    View welcomeView;
+    View breakView;
+    View resetView;
+    View endFrameView;
+    View frameSummaryView;
+    View matchSummaryView;
+    AlertDialog welcomeDialog;
+    AlertDialog breakDialog;
+    AlertDialog resetDialog;
+    AlertDialog endFrameDialog;
+    AlertDialog frameSummaryDialog;
+    AlertDialog matchSummaryDialog;
+    EditText enterPlayerA;
+    EditText enterPlayerB;
     Spinner matchFormat;
     int matchFormatInt;
-    String nameAEntered, nameBEntered, matchFormatChosen;
-    RadioButton breakA, breakB;
+    String nameAEntered;
+    String nameBEntered;
+    String matchFormatChosen;
+    RadioButton breakA;
+    RadioButton breakB;
     String nextBreaker;
-    TextView frameSummaryTitle, nextBreakerView, frameWinner, frameScoreSummary;
-    TextView matchWinner, matchScoreSummary;
+    TextView frameSummaryTitle;
+    TextView nextBreakerView;
+    TextView frameWinner;
+    TextView frameScoreSummary;
+    TextView matchWinner;
+    TextView matchScoreSummary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         // Initialise all required variables
-        playerAName = findViewById(R.id.playerAName);
-        playerBName = findViewById(R.id.playerBName);
-        scoreViewA = findViewById(R.id.scoreA);
-        scoreViewB = findViewById(R.id.scoreB);
-        frameScoreView = findViewById(R.id.frameScore);
-        ptsDiff = findViewById(R.id.pointsDifference);
-        ptsAvl = findViewById(R.id.pointsAvailable);
-        switchA = findViewById(R.id.switchA);
-        switchB = findViewById(R.id.switchB);
-        freeBallSwitch = findViewById(R.id.freeBallSwitch);
-        redBall = findViewById(R.id.redBall);
-        yellowBall = findViewById(R.id.yellowBall);
-        greenBall = findViewById(R.id.greenBall);
-        brownBall = findViewById(R.id.brownBall);
-        blueBall = findViewById(R.id.blueBall);
-        pinkBall = findViewById(R.id.pinkBall);
-        blackBall = findViewById(R.id.blackBall);
         finalRed = false;
         targetBallCurrent = 1;
         scoreAStack = new Stack<Integer>();
